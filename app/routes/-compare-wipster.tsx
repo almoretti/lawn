@@ -334,7 +334,7 @@ export default function CompareWipster() {
                     </span>
                   </li>
                 </ul>
-                <p className="mt-6 border-t border-[#333] pt-4 text-sm text-[var(--foreground-muted)]">
+                <p className="mt-6 border-t border-[#38366d] pt-4 text-sm text-[var(--foreground-muted)]">
                   We do less than Wipster. Proudly. Upload, share, comment. Go home. That's 90% of
                   what anyone actually needs.
                 </p>

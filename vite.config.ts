@@ -4,6 +4,11 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  // Listen on IPv4 loopback (not just ::1) — the local Convex backend fetches
+  // the dev-auth JWKS from http://127.0.0.1:5296/api/auth/jwks.
+  server: {
+    host: "127.0.0.1",
+  },
   // pragmatic-drag-and-drop ships ESM subpath dirs that Node's SSR resolver
   // can't import (ERR_UNSUPPORTED_DIR_IMPORT); bundle it into the SSR build.
   ssr: {

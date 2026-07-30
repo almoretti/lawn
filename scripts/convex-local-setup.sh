@@ -64,7 +64,7 @@ echo "convex-local-setup: seeding deployment environment variables..."
 seed="$(mktemp)"
 trap 'rm -f "$seed"' EXIT
 # Backend runtime secrets only; drop client (VITE_) and selection (CONVEX_) vars.
-grep -hE '^(STRIPE_|CLERK_|CHUNKIFY_|AUTUMN_|RAILWAY_|MUX_)' .env.local .env.convex.local 2>/dev/null \
+grep -hE '^(STRIPE_|CLERK_|CHUNKIFY_|AUTUMN_|RAILWAY_|MUX_|DEV_AUTH_|CF_ACCESS_)' .env.local .env.convex.local 2>/dev/null \
   | grep -vE '^VITE_' > "$seed" || true
 # Derive CLERK_JWT_ISSUER_DOMAIN from the Clerk publishable key when not provided.
 # A Clerk pk_(test|live)_ key base64-encodes "<frontend-api-host>$"; the JWT
@@ -81,8 +81,10 @@ if [ -z "${issuer_domain:-}" ]; then
   fi
 fi
 
-if [ -z "${issuer_domain:-}" ]; then
-  echo "convex-local-setup: ERROR - missing CLERK_JWT_ISSUER_DOMAIN. Set it explicitly or provide a valid VITE_CLERK_PUBLISHABLE_KEY in .env.local." >&2
+# Clerk is optional: local dev normally authenticates via the DEV_AUTH_* JWT
+# issuer instead (see convex/auth.config.ts). Require at least one provider.
+if [ -z "${issuer_domain:-}" ] && ! grep -qE '^(DEV_AUTH_ISSUER|CF_ACCESS_TEAM_DOMAIN)=' "$seed"; then
+  echo "convex-local-setup: ERROR - no auth provider configured. Set DEV_AUTH_ISSUER (local dev), CF_ACCESS_TEAM_DOMAIN, or Clerk keys in .env.local." >&2
   exit 1
 fi
 

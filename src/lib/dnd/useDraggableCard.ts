@@ -54,9 +54,9 @@ export function useDraggableCard<T extends HTMLElement>({
             chip.style.whiteSpace = "nowrap";
             chip.style.textOverflow = "ellipsis";
             chip.style.padding = "6px 10px";
-            chip.style.border = "2px solid #1a1a1a";
-            chip.style.background = "#f0f0e8";
-            chip.style.color = "#1a1a1a";
+            chip.style.border = "2px solid #272357";
+            chip.style.background = "#f5f5f9";
+            chip.style.color = "#272357";
             chip.style.fontWeight = "900";
             chip.style.fontSize = "13px";
             chip.style.lineHeight = "1";

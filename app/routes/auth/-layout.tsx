@@ -3,14 +3,14 @@ import type { ReactNode } from "react";
 
 export function AuthShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-[#f0f0e8]">
+    <div className="relative flex min-h-screen items-center justify-center bg-[#f5f5f9]">
       {/* Subtle grid pattern */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(#1a1a1a 1px, transparent 1px),
-            linear-gradient(90deg, #1a1a1a 1px, transparent 1px)
+            linear-gradient(#272357 1px, transparent 1px),
+            linear-gradient(90deg, #272357 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
         }}
@@ -19,9 +19,9 @@ export function AuthShell({ children }: { children: ReactNode }) {
       <div className="relative z-10 w-full max-w-md px-4">
         <div className="mb-8 text-center">
           <Link to="/" className="inline-block">
-            <span className="text-4xl font-black text-[#1a1a1a]">lawn</span>
+            <span className="text-4xl font-black text-[#272357]">lawn</span>
           </Link>
-          <p className="mt-3 text-sm text-[#888]">Video collaboration, simplified</p>
+          <p className="mt-3 text-sm text-[#6b6b8a]">Video collaboration, simplified</p>
         </div>
         {children}
       </div>

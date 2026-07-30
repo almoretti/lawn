@@ -94,7 +94,7 @@ export default function TeamPage() {
   if (context === null) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="text-[#888]">Team not found</div>
+        <div className="text-[#6b6b8a]">Team not found</div>
       </div>
     );
   }
@@ -170,7 +170,7 @@ export default function TeamPage() {
       {/* Content */}
       <div className="flex-1 overflow-auto p-6">
         {!isLoadingData && !hasActiveSubscription && canAccessBilling && (
-          <Card className="mb-6 border-[#1a1a1a]">
+          <Card className="mb-6 border-[#272357]">
             <CardHeader>
               <CardTitle>Set up billing to create projects</CardTitle>
               <CardDescription>
@@ -195,8 +195,8 @@ export default function TeamPage() {
           <div className="animate-in fade-in flex h-full items-center justify-center duration-300">
             <Card className="max-w-sm text-center">
               <CardHeader>
-                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center bg-[#e8e8e0]">
-                  <Folder className="h-6 w-6 text-[#888]" />
+                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center bg-[#e9e9f2]">
+                  <Folder className="h-6 w-6 text-[#6b6b8a]" />
                 </div>
                 <CardTitle className="text-lg">No projects yet</CardTitle>
                 <CardDescription>
@@ -237,7 +237,7 @@ export default function TeamPage() {
               isLoadingData ? "opacity-0" : "opacity-100",
               gridDraggedOver &&
                 gridCanDrop &&
-                "outline-2 outline-offset-4 outline-[#2d5a2d] outline-dashed",
+                "outline-2 outline-offset-4 outline-[#5252e6] outline-dashed",
             )}
           >
             {sortedProjects.map((project) => (
@@ -273,7 +273,7 @@ export default function TeamPage() {
           <button
             type="button"
             onClick={() => setDndError(null)}
-            className="border-2 border-[#dc2626] bg-[#fef2f2] px-3 py-2 text-sm font-bold text-[#dc2626] shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+            className="border-2 border-[#e50000] bg-[#feefef] px-3 py-2 text-sm font-bold text-[#e50000] shadow-[4px_4px_0px_0px_var(--shadow-color)]"
           >
             {dndError}
           </button>

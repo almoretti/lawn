@@ -42,6 +42,13 @@ function getMuxJwtCredentials(): { keyId: string; keySecret: string } {
   return { keyId, keySecret: normalizePrivateKey(keySecret) };
 }
 
+// Mux is optional in internal/local deployments: without credentials, uploads
+// stay in "processing" and the player streams the original file from the
+// bucket instead of Mux HLS renditions.
+export function isMuxConfigured(): boolean {
+  return Boolean(process.env.MUX_TOKEN_ID && process.env.MUX_TOKEN_SECRET);
+}
+
 let cachedMux: Mux | null = null;
 
 export function getMuxClient(): Mux {
@@ -66,6 +73,49 @@ export async function createMuxAssetFromInputUrl(videoId: string, inputUrl: stri
     mp4_support: "none",
     passthrough: videoId,
   });
+}
+
+// Local-dev relay: when the bucket is on localhost (MinIO), Mux's servers
+// can't pull from the presigned URL, so we push the bytes to a Mux direct
+// upload instead and wait for the asset to appear.
+export async function createMuxAssetViaDirectUpload(
+  videoId: string,
+  bytes: ArrayBuffer,
+  contentType: string,
+): Promise<{ id: string | undefined }> {
+  const mux = getMuxClient();
+  const upload = await mux.video.uploads.create({
+    cors_origin: "*",
+    new_asset_settings: {
+      playback_policies: ["public"],
+      video_quality: "basic",
+      max_resolution_tier: "1080p",
+      mp4_support: "none",
+      passthrough: videoId,
+    },
+  });
+
+  const put = await fetch(upload.url, {
+    method: "PUT",
+    headers: { "content-type": contentType },
+    body: bytes,
+  });
+  if (!put.ok) {
+    throw new Error(`Mux direct upload PUT failed: ${put.status}`);
+  }
+
+  // The asset id appears on the upload shortly after the bytes land.
+  for (let i = 0; i < 30; i++) {
+    const state = await mux.video.uploads.retrieve(upload.id);
+    if (state.asset_id) {
+      return { id: state.asset_id };
+    }
+    if (state.status === "errored" || state.status === "cancelled" || state.status === "timed_out") {
+      throw new Error(`Mux direct upload ${state.status}`);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+  }
+  throw new Error("Timed out waiting for Mux to create an asset from the direct upload.");
 }
 
 export async function getMuxAsset(assetId: string) {
@@ -151,3 +201,4 @@ export function verifyMuxWebhookSignature(rawBody: string, signature: string | n
     webhookSecret,
   );
 }
+

@@ -1,7 +1,7 @@
 import { useAction, useMutation } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { Link, useParams } from "@tanstack/react-router";
-import { useUser } from "@clerk/tanstack-react-start";
+import { useAppUser } from "@/lib/auth";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { VideoPlayer, type VideoPlayerHandle } from "@/components/video-player/VideoPlayer";
 import { Button } from "@/components/ui/button";
@@ -39,7 +39,7 @@ type GrantRequest = {
 export default function SharePage() {
   const params = useParams({ strict: false });
   const token = params.token as string;
-  const { user, isLoaded: isUserLoaded } = useUser();
+  const { user, isLoaded: isUserLoaded } = useAppUser();
 
   const issueAccessGrant = useMutation(api.shareLinks.issueAccessGrant);
   const createComment = useMutation(api.comments.createForShareGrant);
@@ -321,19 +321,19 @@ export default function SharePage() {
 
   if (isBootstrappingShare) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f0f0e8]">
-        <div className="text-[#888]">Opening shared video...</div>
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f9]">
+        <div className="text-[#6b6b8a]">Opening shared video...</div>
       </div>
     );
   }
 
   if (shareInfo.status === "missing" || shareInfo.status === "expired") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f0f0e8] p-4">
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f9] p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#dc2626] bg-[#dc2626]/10">
-              <AlertCircle className="h-6 w-6 text-[#dc2626]" />
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#e50000] bg-[#e50000]/10">
+              <AlertCircle className="h-6 w-6 text-[#e50000]" />
             </div>
             <CardTitle>Link expired or invalid</CardTitle>
             <CardDescription>
@@ -354,11 +354,11 @@ export default function SharePage() {
 
   if (shareInfo.status === "requiresPassword" && !grantToken) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f0f0e8] p-4">
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f9] p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#1a1a1a] bg-[#e8e8e0]">
-              <Lock className="h-6 w-6 text-[#888]" />
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#272357] bg-[#e9e9f2]">
+              <Lock className="h-6 w-6 text-[#6b6b8a]" />
             </div>
             <CardTitle>Password required</CardTitle>
             <CardDescription>
@@ -380,7 +380,7 @@ export default function SharePage() {
                 onChange={(event) => setPasswordInput(event.target.value)}
                 autoFocus
               />
-              {passwordError && <p className="text-sm text-[#dc2626]">Incorrect password</p>}
+              {passwordError && <p className="text-sm text-[#e50000]">Incorrect password</p>}
               <Button
                 type="submit"
                 className="w-full"
@@ -397,11 +397,11 @@ export default function SharePage() {
 
   if (shareInfo.status === "ok" && !grantToken && activeGrantError) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f0f0e8] p-4">
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f9] p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#dc2626] bg-[#dc2626]/10">
-              <AlertCircle className="h-6 w-6 text-[#dc2626]" />
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#e50000] bg-[#e50000]/10">
+              <AlertCircle className="h-6 w-6 text-[#e50000]" />
             </div>
             <CardTitle>Couldn&apos;t open shared video</CardTitle>
             <CardDescription>{activeGrantError}</CardDescription>
@@ -422,11 +422,11 @@ export default function SharePage() {
 
   if (!videoData?.video) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f0f0e8] p-4">
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f9] p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#1a1a1a] bg-[#e8e8e0]">
-              <Video className="h-6 w-6 text-[#888]" />
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border-2 border-[#272357] bg-[#e9e9f2]">
+              <Video className="h-6 w-6 text-[#6b6b8a]" />
             </div>
             <CardTitle>Video not available</CardTitle>
             <CardDescription>This video is not available or is still processing.</CardDescription>
@@ -439,13 +439,13 @@ export default function SharePage() {
   const video = videoData.video;
 
   return (
-    <div className="min-h-screen bg-[#f0f0e8]">
-      <header className="border-b-2 border-[#1a1a1a] bg-[#f0f0e8] px-6 py-4">
+    <div className="min-h-screen bg-[#f5f5f9]">
+      <header className="border-b-2 border-[#272357] bg-[#f5f5f9] px-6 py-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <Link
             preload="intent"
             to="/"
-            className="flex items-center gap-2 text-sm font-bold text-[#888] hover:text-[#1a1a1a]"
+            className="flex items-center gap-2 text-sm font-bold text-[#6b6b8a] hover:text-[#272357]"
           >
             lawn
           </Link>
@@ -465,28 +465,28 @@ export default function SharePage() {
         {downloadError ? (
           <div
             role="alert"
-            className="border-2 border-[#dc2626] bg-[#dc2626]/10 px-4 py-3 text-sm text-[#7f1d1d]"
+            className="border-2 border-[#e50000] bg-[#e50000]/10 px-4 py-3 text-sm text-[#7f1d1d]"
           >
             {downloadError}
           </div>
         ) : null}
 
         <div>
-          <h1 className="text-2xl font-black text-[#1a1a1a]">{video.title}</h1>
-          {video.description && <p className="mt-1 text-[#888]">{video.description}</p>}
-          <div className="mt-2 flex items-center gap-4 text-sm text-[#888]">
+          <h1 className="text-2xl font-black text-[#272357]">{video.title}</h1>
+          {video.description && <p className="mt-1 text-[#6b6b8a]">{video.description}</p>}
+          <div className="mt-2 flex items-center gap-4 text-sm text-[#6b6b8a]">
             {video.duration && <span className="font-mono">{formatDuration(video.duration)}</span>}
             {comments && <span>{comments.length} threads</span>}
             <VideoWatchers watchers={watchers} className="ml-auto" />
           </div>
         </div>
 
-        <div className="overflow-hidden border-2 border-[#1a1a1a]">
+        <div className="overflow-hidden border-2 border-[#272357]">
           {playbackSource ? (
             <>
               {isLoadingPlayback || activePlaybackError ? (
                 <div
-                  className="flex items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1d5]"
+                  className="flex items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1dc]"
                   role="status"
                   aria-live="polite"
                 >
@@ -530,15 +530,15 @@ export default function SharePage() {
           )}
         </div>
 
-        <section className="space-y-4 border-2 border-[#1a1a1a] bg-[#e8e8e0] p-4">
+        <section className="space-y-4 border-2 border-[#272357] bg-[#e9e9f2] p-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-black text-[#1a1a1a]">Comments</h2>
-            <span className="font-mono text-xs text-[#888]">{formatTimestamp(currentTime)}</span>
+            <h2 className="font-black text-[#272357]">Comments</h2>
+            <span className="font-mono text-xs text-[#6b6b8a]">{formatTimestamp(currentTime)}</span>
           </div>
 
           {isUserLoaded && user ? (
             <form onSubmit={handleSubmitComment} className="space-y-2">
-              <div className="flex items-center gap-2 text-xs text-[#666]">
+              <div className="flex items-center gap-2 text-xs text-[#494c69]">
                 <Clock className="h-3.5 w-3.5" />
                 Comment at {formatTimestamp(currentTime)}
               </div>
@@ -548,7 +548,7 @@ export default function SharePage() {
                 placeholder="Leave a comment..."
                 className="min-h-[90px]"
               />
-              {commentError ? <p className="text-xs text-[#dc2626]">{commentError}</p> : null}
+              {commentError ? <p className="text-xs text-[#e50000]">{commentError}</p> : null}
               <Button type="submit" disabled={!commentText.trim() || isSubmittingComment}>
                 <MessageSquare className="mr-1.5 h-4 w-4" />
                 {isSubmittingComment ? "Posting..." : "Post comment"}
@@ -567,18 +567,18 @@ export default function SharePage() {
           )}
 
           {comments === undefined ? (
-            <p className="text-sm text-[#888]">Loading comments...</p>
+            <p className="text-sm text-[#6b6b8a]">Loading comments...</p>
           ) : comments.length === 0 ? (
-            <p className="text-sm text-[#888]">No comments yet.</p>
+            <p className="text-sm text-[#6b6b8a]">No comments yet.</p>
           ) : (
             <div className="space-y-3">
               {comments.map((comment) => (
-                <article key={comment._id} className="border-2 border-[#1a1a1a] bg-[#f0f0e8] p-3">
+                <article key={comment._id} className="border-2 border-[#272357] bg-[#f5f5f9] p-3">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="text-sm font-bold text-[#1a1a1a]">{comment.userName}</div>
+                    <div className="text-sm font-bold text-[#272357]">{comment.userName}</div>
                     <button
                       type="button"
-                      className="font-mono text-xs text-[#2d5a2d] hover:text-[#1a1a1a]"
+                      className="font-mono text-xs text-[#5252e6] hover:text-[#272357]"
                       onClick={() =>
                         playerRef.current?.seekTo(comment.timestampSeconds, { play: true })
                       }
@@ -586,22 +586,22 @@ export default function SharePage() {
                       {formatTimestamp(comment.timestampSeconds)}
                     </button>
                   </div>
-                  <p className="mt-1 text-sm break-words whitespace-pre-wrap text-[#1a1a1a]">
+                  <p className="mt-1 text-sm break-words whitespace-pre-wrap text-[#272357]">
                     <CommentText text={comment.text} />
                   </p>
-                  <p className="mt-1 text-[11px] text-[#888]">
+                  <p className="mt-1 text-[11px] text-[#6b6b8a]">
                     {formatRelativeTime(comment._creationTime)}
                   </p>
 
                   {comment.replies.length > 0 ? (
-                    <div className="mt-3 ml-4 space-y-2 border-l-2 border-[#1a1a1a] pl-3">
+                    <div className="mt-3 ml-4 space-y-2 border-l-2 border-[#272357] pl-3">
                       {comment.replies.map((reply) => (
                         <div key={reply._id} className="text-sm">
                           <div className="flex items-center justify-between gap-2">
-                            <span className="font-bold text-[#1a1a1a]">{reply.userName}</span>
+                            <span className="font-bold text-[#272357]">{reply.userName}</span>
                             <button
                               type="button"
-                              className="font-mono text-xs text-[#2d5a2d] hover:text-[#1a1a1a]"
+                              className="font-mono text-xs text-[#5252e6] hover:text-[#272357]"
                               onClick={() =>
                                 playerRef.current?.seekTo(reply.timestampSeconds, { play: true })
                               }
@@ -609,7 +609,7 @@ export default function SharePage() {
                               {formatTimestamp(reply.timestampSeconds)}
                             </button>
                           </div>
-                          <p className="break-words whitespace-pre-wrap text-[#1a1a1a]">
+                          <p className="break-words whitespace-pre-wrap text-[#272357]">
                             <CommentText text={reply.text} />
                           </p>
                         </div>
@@ -623,10 +623,10 @@ export default function SharePage() {
         </section>
       </main>
 
-      <footer className="mt-8 border-t-2 border-[#1a1a1a] px-6 py-4">
-        <div className="mx-auto max-w-6xl text-center text-sm text-[#888]">
+      <footer className="mt-8 border-t-2 border-[#272357] px-6 py-4">
+        <div className="mx-auto max-w-6xl text-center text-sm text-[#6b6b8a]">
           Shared via{" "}
-          <Link to="/" preload="intent" className="font-bold text-[#1a1a1a] hover:text-[#2d5a2d]">
+          <Link to="/" preload="intent" className="font-bold text-[#272357] hover:text-[#5252e6]">
             lawn
           </Link>
         </div>

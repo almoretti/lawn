@@ -114,17 +114,17 @@ export function ProjectCard({
     <Card
       ref={setCardRef}
       className={cn(
-        "group relative cursor-pointer transition-colors hover:bg-[#e8e8e0]",
+        "group relative cursor-pointer transition-colors hover:bg-[#e9e9f2]",
         isDragging && "border-dashed opacity-50",
-        isDraggedOver && canDropHere && "border-[#2d5a2d] bg-[#2d5a2d]/10",
-        isDraggedOver && !canDropHere && "[cursor:no-drop] border-[#dc2626]",
+        isDraggedOver && canDropHere && "border-[#5252e6] bg-[#5252e6]/10",
+        isDraggedOver && !canDropHere && "[cursor:no-drop] border-[#e50000]",
       )}
       onClick={onOpen}
       {...prewarmIntentHandlers}
     >
       <button
         type="button"
-        className="pointer-events-none absolute inset-0 z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2d5a2d]"
+        className="pointer-events-none absolute inset-0 z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5252e6]"
         aria-label={`Open project ${project.name}`}
         onClick={(event) => {
           event.stopPropagation();
@@ -170,7 +170,7 @@ export function ProjectCard({
               )}
               {onDelete && (
                 <DropdownMenuItem
-                  className="text-[#dc2626] focus:text-[#dc2626]"
+                  className="text-[#e50000] focus:text-[#e50000]"
                   onClick={(e) => {
                     e.stopPropagation();
                     onDelete(project._id);
@@ -185,7 +185,7 @@ export function ProjectCard({
         )}
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-between text-sm text-[#888] transition-colors group-hover:text-[#1a1a1a]">
+        <div className="flex items-center justify-between text-sm text-[#6b6b8a] transition-colors group-hover:text-[#272357]">
           <span>Open project</span>
           <ArrowRight className="h-4 w-4" />
         </div>

@@ -1,51 +1,54 @@
-import { SignIn } from "@clerk/tanstack-react-start";
+import { useEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
+import { useAppAuth } from "@/lib/auth";
+import { AppAuthProvider } from "@/lib/auth";
 
-export default function SignInPage() {
+// Sign-in is handled upstream of the app (Cloudflare Access at the edge in
+// production; an always-on dev identity locally). This page just bounces
+// authenticated visitors to their destination and explains itself to anyone
+// who somehow reaches it unauthenticated.
+function SignInContent() {
+  const { isLoaded, userId } = useAppAuth();
   const search = useRouterState({
     select: (state) => state.location.searchStr,
   });
-  const redirectUrl = new URLSearchParams(search).get("redirect_url");
+  const redirectUrl = new URLSearchParams(search).get("redirect_url") || "/dashboard";
+
+  useEffect(() => {
+    if (isLoaded && userId) {
+      window.location.replace(redirectUrl);
+    }
+  }, [isLoaded, userId, redirectUrl]);
 
   return (
-    <SignIn
-      fallbackRedirectUrl={redirectUrl || "/dashboard"}
-      appearance={{
-        elements: {
-          formButtonPrimary:
-            "bg-[#1a1a1a] hover:bg-[#2d5a2d] text-[#f0f0e8] border-2 border-[#1a1a1a] rounded-none shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)] font-mono font-bold uppercase text-sm transition-all",
-          card: "bg-[#f0f0e8] border-2 border-[#1a1a1a] rounded-none shadow-[8px_8px_0px_0px_var(--shadow-color)]",
-          headerTitle: "text-[#1a1a1a] font-black uppercase tracking-tighter text-2xl font-mono",
-          headerSubtitle: "text-[#888] font-mono",
-          socialButtonsBlockButton:
-            "border-2 border-[#1a1a1a] bg-transparent hover:bg-[#1a1a1a] text-[#1a1a1a] hover:text-[#f0f0e8] rounded-none transition-all hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)] font-mono",
-          socialButtonsBlockButtonText: "!text-current font-bold uppercase font-mono",
-          socialButtonsBlockButtonArrow: "text-current",
-          formFieldLabel: "text-[#1a1a1a] font-bold uppercase font-mono",
-          formFieldInput:
-            "bg-transparent border-2 border-[#1a1a1a] text-[#1a1a1a] focus:border-[#2d5a2d] focus:shadow-[4px_4px_0px_0px_var(--shadow-accent)] focus:ring-0 rounded-none font-mono",
-          footerActionLink: "text-[#2d5a2d] hover:text-[#1a1a1a] font-bold font-mono",
-          footerActionText: "text-[#888] font-mono",
-          dividerLine: "bg-[#1a1a1a]",
-          dividerText: "text-[#888] font-mono font-bold",
-          identityPreviewText: "text-[#1a1a1a] font-mono",
-          identityPreviewEditButton: "text-[#2d5a2d] hover:text-[#1a1a1a]",
-          formFieldInputShowPasswordButton: "text-[#888] hover:text-[#1a1a1a]",
-          footer: "hidden",
-          internal: "text-[#1a1a1a]",
-        },
-        variables: {
-          colorPrimary: "#2d5a2d",
-          colorBackground: "#f0f0e8",
-          colorInputBackground: "transparent",
-          colorInputText: "#1a1a1a",
-          colorText: "#1a1a1a",
-          colorTextSecondary: "#888888",
-          colorTextOnPrimaryBackground: "#f0f0e8",
-          colorNeutral: "#1a1a1a",
-          borderRadius: "0rem",
-        },
-      }}
-    />
+    <div className="border-2 border-[#272357] bg-[#f5f5f9] p-8 text-center shadow-[8px_8px_0px_0px_var(--shadow-color)]">
+      {!isLoaded || userId ? (
+        <p className="font-mono text-sm text-[#6b6b8a]">Signing you in...</p>
+      ) : (
+        <>
+          <h1 className="font-mono text-2xl font-black tracking-tighter text-[#272357] uppercase">
+            Access required
+          </h1>
+          <p className="mt-4 font-mono text-sm text-[#6b6b8a]">
+            Sign-in is managed by your organisation&apos;s access layer. Reload the page to
+            re-authenticate, or contact your administrator if the problem persists.
+          </p>
+          <a
+            href={redirectUrl}
+            className="mt-6 inline-block border-2 border-[#272357] bg-[#272357] px-6 py-2 font-mono text-sm font-bold text-[#f5f5f9] uppercase transition-all hover:bg-[#5252e6]"
+          >
+            Retry
+          </a>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <AppAuthProvider>
+      <SignInContent />
+    </AppAuthProvider>
   );
 }

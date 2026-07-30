@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 export function MarketingNav() {
   return (
-    <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b-2 border-[#1a1a1a] bg-[#f0f0e8] px-6 py-4 text-[#1a1a1a] transition-all duration-200">
+    <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b-2 border-[#272357] bg-[#f5f5f9] px-6 py-4 text-[#272357] transition-all duration-200">
       <div className="flex items-center gap-4">
         <Link to="/" className="text-xl font-black tracking-tighter">
           lawn.
@@ -20,7 +20,7 @@ export function MarketingNav() {
         </Link>
         <Link
           to="/sign-up"
-          className="border-2 border-[#1a1a1a] px-4 py-2 transition-colors hover:bg-[#1a1a1a] hover:text-[#f0f0e8]"
+          className="border-2 border-[#272357] px-4 py-2 transition-colors hover:bg-[#272357] hover:text-[#f5f5f9]"
         >
           Start
         </Link>

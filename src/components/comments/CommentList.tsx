@@ -33,13 +33,13 @@ export function CommentList(props: CommentListProps) {
   const comments = hasProvidedComments ? providedComments : queriedComments;
 
   if (comments === undefined) {
-    return <div className="p-4 text-center text-[#888]">Loading...</div>;
+    return <div className="p-4 text-center text-[#6b6b8a]">Loading...</div>;
   }
 
   if (comments.length === 0) {
     return (
       <div className="flex h-full items-center justify-center p-6">
-        <p className="text-center text-sm text-[#888]">
+        <p className="text-center text-sm text-[#6b6b8a]">
           No comments yet.
           <br />
           Click on the timeline to add one.
@@ -50,7 +50,7 @@ export function CommentList(props: CommentListProps) {
 
   return (
     <ScrollArea className="h-full">
-      <div className="flex flex-col divide-y divide-[#1a1a1a]/10 dark:divide-white/10">
+      <div className="flex flex-col divide-y divide-[#272357]/10 dark:divide-white/10">
         {comments.map((comment) => (
           <div key={comment._id} className="relative">
             <CommentItem
@@ -61,7 +61,7 @@ export function CommentList(props: CommentListProps) {
             />
             {comment.replies.length > 0 && (
               <div className="relative space-y-4 pr-4 pb-4 pl-14">
-                <div className="absolute top-0 bottom-6 left-[1.35rem] w-px bg-[#1a1a1a]/10 dark:bg-white/10" />
+                <div className="absolute top-0 bottom-6 left-[1.35rem] w-px bg-[#272357]/10 dark:bg-white/10" />
                 {comment.replies.map((reply) => (
                   <CommentItem
                     key={reply._id}

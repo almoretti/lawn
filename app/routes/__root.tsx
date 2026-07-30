@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { NotFound } from "@/components/ui/NotFound";
 import appCss from "../app.css?url";
-import geistMonoLatin from "@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url";
+import dmMonoLatin from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -22,7 +22,7 @@ export const Route = createRootRoute({
     links: [
       {
         rel: "preload",
-        href: geistMonoLatin,
+        href: dmMonoLatin,
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",

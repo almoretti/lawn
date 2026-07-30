@@ -50,7 +50,7 @@ export function UploadProgress({
 }: UploadProgressProps) {
   return (
     <div
-      className="border-2 border-[#1a1a1a] bg-[#f0f0e8] p-4"
+      className="border-2 border-[#272357] bg-[#f5f5f9] p-4"
       role="status"
       aria-live="polite"
       aria-atomic="true"
@@ -58,26 +58,26 @@ export function UploadProgress({
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           {intentLabel && (
-            <p className="mb-1 text-[10px] font-black tracking-wider text-[#2d5a2d] uppercase">
+            <p className="mb-1 text-[10px] font-black tracking-wider text-[#5252e6] uppercase">
               {intentLabel}
             </p>
           )}
-          <p className="truncate text-sm font-bold text-[#1a1a1a]">{fileName}</p>
-          <p className="mt-0.5 text-xs text-[#888]">
+          <p className="truncate text-sm font-bold text-[#272357]">{fileName}</p>
+          <p className="mt-0.5 text-xs text-[#6b6b8a]">
             {formatBytes(fileSize)}
             {resuming ? " · Resuming" : ""}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {status === "complete" && <CheckCircle className="h-5 w-5 text-[#2d5a2d]" />}
-          {status === "error" && <AlertCircle className="h-5 w-5 text-[#dc2626]" />}
-          {status === "processing" && <Loader2 className="h-5 w-5 animate-spin text-[#2d5a2d]" />}
+          {status === "complete" && <CheckCircle className="h-5 w-5 text-[#5252e6]" />}
+          {status === "error" && <AlertCircle className="h-5 w-5 text-[#e50000]" />}
+          {status === "processing" && <Loader2 className="h-5 w-5 animate-spin text-[#5252e6]" />}
           {(status === "pending" || status === "uploading" || status === "error") && onCancel && (
             <Button
               variant="ghost"
               size="icon"
               onClick={onCancel}
-              className="h-7 w-7 text-[#888] hover:text-[#1a1a1a]"
+              className="h-7 w-7 text-[#6b6b8a] hover:text-[#272357]"
               aria-label={
                 status === "error" ? `Dismiss ${fileName}` : `Cancel upload of ${fileName}`
               }
@@ -88,17 +88,17 @@ export function UploadProgress({
         </div>
       </div>
 
-      {status === "pending" && <p className="mt-2 text-xs text-[#888]">Queued for upload...</p>}
+      {status === "pending" && <p className="mt-2 text-xs text-[#6b6b8a]">Queued for upload...</p>}
 
       {status === "uploading" && (
         <div className="mt-3 space-y-1.5">
           <Progress value={progress} />
-          <div className="flex justify-between font-mono text-xs text-[#888]">
+          <div className="flex justify-between font-mono text-xs text-[#6b6b8a]">
             <span>{formatSpeed(bytesPerSecond)}</span>
             <span>
               {progress}%
               {estimatedSecondsRemaining !== null && estimatedSecondsRemaining > 0 && (
-                <span className="text-[#888]">
+                <span className="text-[#6b6b8a]">
                   {" "}
                   · {formatTimeRemaining(estimatedSecondsRemaining)} left
                 </span>
@@ -108,11 +108,11 @@ export function UploadProgress({
         </div>
       )}
 
-      {status === "processing" && <p className="mt-2 text-xs text-[#888]">Processing video...</p>}
+      {status === "processing" && <p className="mt-2 text-xs text-[#6b6b8a]">Processing video...</p>}
 
       {status === "complete" && (
         <div className="mt-2 flex items-center justify-between gap-3">
-          <p className="text-xs font-bold text-[#2d5a2d]">
+          <p className="text-xs font-bold text-[#5252e6]">
             {intentLabel ? "New version uploaded." : "Upload complete."}
           </p>
           {onView && (
@@ -125,7 +125,7 @@ export function UploadProgress({
 
       {status === "error" && error && (
         <div className="mt-2 space-y-2">
-          <p className="text-xs text-[#dc2626]">{error}</p>
+          <p className="text-xs text-[#e50000]">{error}</p>
           {onRetryProcessing && (
             <Button variant="primary" size="sm" onClick={onRetryProcessing}>
               Retry processing

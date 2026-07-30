@@ -9,18 +9,18 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border-2 border-[#1a1a1a] bg-[#1a1a1a] text-[#f0f0e8] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#2d5a2d] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
+          "border-2 border-[#272357] bg-[#272357] text-[#f5f5f9] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#5252e6] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
         primary:
-          "border-2 border-[#1a1a1a] bg-[#2d5a2d] text-[#f0f0e8] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#3a6a3a] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
+          "border-2 border-[#272357] bg-[#5252e6] text-[#f5f5f9] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#4343cf] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
         destructive:
-          "border-2 border-[#1a1a1a] bg-[#dc2626] text-white shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#b91c1c] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
+          "border-2 border-[#272357] bg-[#e50000] text-white shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#b91c1c] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
         outline:
-          "border-2 border-[#1a1a1a] bg-transparent text-[#1a1a1a] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#1a1a1a] hover:text-[#f0f0e8] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
+          "border-2 border-[#272357] bg-transparent text-[#272357] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#272357] hover:text-[#f5f5f9] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
         secondary:
-          "border-2 border-[#1a1a1a] bg-[#e8e8e0] text-[#1a1a1a] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#d8d8d0] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
+          "border-2 border-[#272357] bg-[#e9e9f2] text-[#272357] shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#dadae8] hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
         ghost:
-          "border-2 border-transparent text-[#1a1a1a] hover:-translate-x-[2px] hover:-translate-y-[2px] hover:border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f0f0e8] hover:shadow-[4px_4px_0px_0px_var(--shadow-color)]",
-        link: "text-[#1a1a1a] underline underline-offset-4 hover:text-[#2d5a2d]",
+          "border-2 border-transparent text-[#272357] hover:-translate-x-[2px] hover:-translate-y-[2px] hover:border-[#272357] hover:bg-[#272357] hover:text-[#f5f5f9] hover:shadow-[4px_4px_0px_0px_var(--shadow-color)]",
+        link: "text-[#272357] underline underline-offset-4 hover:text-[#5252e6]",
       },
       size: {
         default: "h-10 px-5 py-2",

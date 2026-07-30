@@ -26,9 +26,9 @@ function workflowStatusLabel(status: VideoWorkflowStatus) {
 }
 
 function workflowStatusDotColor(status: VideoWorkflowStatus) {
-  if (status === "done") return "bg-[#2d5a2d]";
-  if (status === "rework") return "bg-[#ca8a04]";
-  return "bg-[#888]";
+  if (status === "done") return "bg-[#5252e6]";
+  if (status === "rework") return "bg-[#d97f14]";
+  return "bg-[#6b6b8a]";
 }
 
 export type VideoWorkflowStatusControlProps = {
@@ -64,8 +64,8 @@ export function VideoWorkflowStatusControl({
           disabled={disabled}
           className={cn(
             "inline-flex items-center gap-1.5 font-bold tracking-wider uppercase transition-colors",
-            disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer hover:text-[#1a1a1a]",
-            isLg ? "text-xs text-[#1a1a1a]" : "text-[10px] text-[#888]",
+            disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer hover:text-[#272357]",
+            isLg ? "text-xs text-[#272357]" : "text-[10px] text-[#6b6b8a]",
             className,
           )}
           aria-label="Update review status"

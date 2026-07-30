@@ -59,8 +59,8 @@ export function DropZone({ onFilesSelected, disabled, className }: DropZoneProps
       className={cn(
         "relative border-2 border-dashed p-12 text-center transition-all",
         isDragActive
-          ? "border-[#2d5a2d] bg-[#2d5a2d]/5"
-          : "border-[#1a1a1a] bg-[#f0f0e8] hover:border-[#888]",
+          ? "border-[#5252e6] bg-[#5252e6]/5"
+          : "border-[#272357] bg-[#f5f5f9] hover:border-[#6b6b8a]",
         disabled && "cursor-not-allowed opacity-40",
         className,
       )}
@@ -80,17 +80,17 @@ export function DropZone({ onFilesSelected, disabled, className }: DropZoneProps
       <div className="flex flex-col items-center gap-4">
         <div
           className={cn(
-            "flex h-14 w-14 items-center justify-center border-2 border-[#1a1a1a] transition-colors",
-            isDragActive ? "bg-[#2d5a2d] text-[#f0f0e8]" : "bg-[#e8e8e0] text-[#888]",
+            "flex h-14 w-14 items-center justify-center border-2 border-[#272357] transition-colors",
+            isDragActive ? "bg-[#5252e6] text-[#f5f5f9]" : "bg-[#e9e9f2] text-[#6b6b8a]",
           )}
         >
           <Upload className="h-6 w-6" />
         </div>
         <div>
-          <p className="font-bold text-[#1a1a1a]">
+          <p className="font-bold text-[#272357]">
             {isDragActive ? "Drop to upload" : "Drop videos or click to upload"}
           </p>
-          <p className="mt-1 text-sm text-[#888]">MP4, MOV, WebM supported</p>
+          <p className="mt-1 text-sm text-[#6b6b8a]">MP4, MOV, WebM supported</p>
         </div>
       </div>
     </div>

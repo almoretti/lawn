@@ -1,4 +1,4 @@
-import { useAuth } from "@clerk/tanstack-react-start";
+import { useAppAuth } from "@/lib/auth";
 import { useConvex, useConvexAuth, useQuery } from "convex/react";
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { api } from "@convex/_generated/api";
@@ -295,9 +295,9 @@ function DashboardUploadBoundary({
 
       {isGlobalDragActive && (
         <div className="pointer-events-none fixed inset-0 z-40">
-          <div className="absolute inset-0 bg-[#1a1a1a]/20" />
-          <div className="absolute inset-4 flex items-center justify-center border-4 border-dashed border-[#2d5a2d] bg-[#2d5a2d]/10">
-            <p className="border-2 border-[#1a1a1a] bg-[#f0f0e8] px-4 py-2 text-sm font-bold text-[#1a1a1a]">
+          <div className="absolute inset-0 bg-[#272357]/20" />
+          <div className="absolute inset-4 flex items-center justify-center border-4 border-dashed border-[#5252e6] bg-[#5252e6]/10">
+            <p className="border-2 border-[#272357] bg-[#f5f5f9] px-4 py-2 text-sm font-bold text-[#272357]">
               {routeVideoId
                 ? detailVideo?.role === "viewer"
                   ? "New version uploads require member access"
@@ -333,22 +333,22 @@ function DashboardUploadBoundary({
             </DialogDescription>
           </DialogHeader>
           {uploadTargets === undefined ? (
-            <p className="text-sm text-[#888]">Loading projects...</p>
+            <p className="text-sm text-[#6b6b8a]">Loading projects...</p>
           ) : uploadTargets.length === 0 ? (
-            <p className="text-sm text-[#888]">No uploadable projects found for your account.</p>
+            <p className="text-sm text-[#6b6b8a]">No uploadable projects found for your account.</p>
           ) : (
-            <div className="max-h-80 divide-y-2 divide-[#1a1a1a] overflow-y-auto border-2 border-[#1a1a1a]">
+            <div className="max-h-80 divide-y-2 divide-[#272357] overflow-y-auto border-2 border-[#272357]">
               {uploadTargets.map((target) => (
                 <button
                   key={target.projectId}
                   type="button"
-                  className="w-full px-4 py-3 text-left transition-colors hover:bg-[#e8e8e0]"
+                  className="w-full px-4 py-3 text-left transition-colors hover:bg-[#e9e9f2]"
                   onClick={() => handleProjectSelected(target.projectId)}
                 >
-                  <p className="truncate font-bold text-[#1a1a1a]" title={target.projectPath}>
+                  <p className="truncate font-bold text-[#272357]" title={target.projectPath}>
                     {target.projectPath}
                   </p>
-                  <p className="text-xs text-[#888]">{target.teamName}</p>
+                  <p className="text-xs text-[#6b6b8a]">{target.teamName}</p>
                 </button>
               ))}
             </div>
@@ -360,7 +360,7 @@ function DashboardUploadBoundary({
 }
 
 export default function DashboardLayout() {
-  const { isLoaded, userId } = useAuth();
+  const { isLoaded, userId } = useAppAuth();
   const { isLoading: isConvexAuthLoading, isAuthenticated: isConvexAuthenticated } =
     useConvexAuth();
   const location = useLocation();
@@ -419,40 +419,40 @@ export default function DashboardLayout() {
   let dashboardContent: ReactNode;
   if (access.kind === "loading") {
     dashboardContent = (
-      <div className="flex h-full items-center justify-center bg-[#f0f0e8]">
-        <div role="status" aria-live="polite" className="text-[#888]">
+      <div className="flex h-full items-center justify-center bg-[#f5f5f9]">
+        <div role="status" aria-live="polite" className="text-[#6b6b8a]">
           Checking access...
         </div>
       </div>
     );
   } else if (access.kind === "redirect-public" || access.kind === "redirect-sign-in") {
     dashboardContent = (
-      <div className="flex h-full items-center justify-center bg-[#f0f0e8]">
-        <div role="status" aria-live="polite" className="text-[#888]">
+      <div className="flex h-full items-center justify-center bg-[#f5f5f9]">
+        <div role="status" aria-live="polite" className="text-[#6b6b8a]">
           Redirecting...
         </div>
       </div>
     );
   } else if (access.kind === "auth-unavailable") {
     dashboardContent = (
-      <div className="flex h-full items-center justify-center bg-[#f0f0e8] p-6">
+      <div className="flex h-full items-center justify-center bg-[#f5f5f9] p-6">
         <div
           role="alert"
-          className="max-w-md border-2 border-[#1a1a1a] bg-[#f0f0e8] p-5 text-center shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+          className="max-w-md border-2 border-[#272357] bg-[#f5f5f9] p-5 text-center shadow-[4px_4px_0px_0px_var(--shadow-color)]"
         >
-          <p className="font-bold text-[#1a1a1a]">We couldn't verify your dashboard session.</p>
-          <p className="mt-1 text-sm text-[#888]">Try again, or return home and sign in again.</p>
+          <p className="font-bold text-[#272357]">We couldn't verify your dashboard session.</p>
+          <p className="mt-1 text-sm text-[#6b6b8a]">Try again, or return home and sign in again.</p>
           <div className="mt-4 flex justify-center gap-2">
             <button
               type="button"
-              className="border-2 border-[#1a1a1a] bg-[#1a1a1a] px-3 py-2 text-sm font-bold text-[#f0f0e8]"
+              className="border-2 border-[#272357] bg-[#272357] px-3 py-2 text-sm font-bold text-[#f5f5f9]"
               onClick={() => window.location.reload()}
             >
               Try again
             </button>
             <a
               href="/"
-              className="border-2 border-[#1a1a1a] px-3 py-2 text-sm font-bold text-[#1a1a1a]"
+              className="border-2 border-[#272357] px-3 py-2 text-sm font-bold text-[#272357]"
             >
               Go home
             </a>
@@ -462,10 +462,10 @@ export default function DashboardLayout() {
     );
   } else if (access.kind === "not-found") {
     dashboardContent = (
-      <div className="flex h-full items-center justify-center bg-[#f0f0e8] p-6">
-        <div role="alert" className="text-center text-[#888]">
+      <div className="flex h-full items-center justify-center bg-[#f5f5f9] p-6">
+        <div role="alert" className="text-center text-[#6b6b8a]">
           <p>Video or workspace not found</p>
-          <a className="mt-3 inline-block font-bold text-[#1a1a1a] underline" href="/dashboard">
+          <a className="mt-3 inline-block font-bold text-[#272357] underline" href="/dashboard">
             Back to dashboard
           </a>
         </div>
@@ -476,7 +476,7 @@ export default function DashboardLayout() {
   }
 
   return (
-    <div className={cn("relative flex h-full flex-col bg-[#f0f0e8]")}>
+    <div className={cn("relative flex h-full flex-col bg-[#f5f5f9]")}>
       <DashboardUploadBoundary
         teamSlug={resolvedTeamSlug}
         routeProjectId={routeProjectId}

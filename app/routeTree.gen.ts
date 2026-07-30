@@ -29,6 +29,8 @@ import { Route as CompareFrameioRouteImport } from './routes/compare.frameio'
 import { Route as DashboardTeamSlugIndexRouteImport } from './routes/dashboard/$teamSlug.index'
 import { Route as DashboardTeamSlugSettingsRouteImport } from './routes/dashboard/$teamSlug.settings'
 import { Route as DashboardTeamSlugProjectIdRouteImport } from './routes/dashboard/$teamSlug.$projectId'
+import { Route as ApiAuthTokenRouteImport } from './routes/api.auth.token'
+import { Route as ApiAuthJwksRouteImport } from './routes/api.auth.jwks'
 import { Route as DashboardTeamSlugProjectIdIndexRouteImport } from './routes/dashboard/$teamSlug.$projectId.index'
 import { Route as DashboardTeamSlugProjectIdVideoIdRouteImport } from './routes/dashboard/$teamSlug.$projectId.$videoId'
 
@@ -134,6 +136,16 @@ const DashboardTeamSlugProjectIdRoute =
     path: '/$projectId',
     getParentRoute: () => DashboardTeamSlugRoute,
   } as any)
+const ApiAuthTokenRoute = ApiAuthTokenRouteImport.update({
+  id: '/api/auth/token',
+  path: '/api/auth/token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthJwksRoute = ApiAuthJwksRouteImport.update({
+  id: '/api/auth/jwks',
+  path: '/api/auth/jwks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardTeamSlugProjectIdIndexRoute =
   DashboardTeamSlugProjectIdIndexRouteImport.update({
     id: '/',
@@ -165,6 +177,8 @@ export interface FileRoutesByFullPath {
   '/sign-up/$': typeof SignUpSplatRoute
   '/watch/$publicId': typeof WatchPublicIdRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/api/auth/jwks': typeof ApiAuthJwksRoute
+  '/api/auth/token': typeof ApiAuthTokenRoute
   '/dashboard/$teamSlug/$projectId': typeof DashboardTeamSlugProjectIdRouteWithChildren
   '/dashboard/$teamSlug/settings': typeof DashboardTeamSlugSettingsRoute
   '/dashboard/$teamSlug/': typeof DashboardTeamSlugIndexRoute
@@ -187,6 +201,8 @@ export interface FileRoutesByTo {
   '/sign-up/$': typeof SignUpSplatRoute
   '/watch/$publicId': typeof WatchPublicIdRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/api/auth/jwks': typeof ApiAuthJwksRoute
+  '/api/auth/token': typeof ApiAuthTokenRoute
   '/dashboard/$teamSlug/settings': typeof DashboardTeamSlugSettingsRoute
   '/dashboard/$teamSlug': typeof DashboardTeamSlugIndexRoute
   '/dashboard/$teamSlug/$projectId/$videoId': typeof DashboardTeamSlugProjectIdVideoIdRoute
@@ -211,6 +227,8 @@ export interface FileRoutesById {
   '/sign-up/$': typeof SignUpSplatRoute
   '/watch/$publicId': typeof WatchPublicIdRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/api/auth/jwks': typeof ApiAuthJwksRoute
+  '/api/auth/token': typeof ApiAuthTokenRoute
   '/dashboard/$teamSlug/$projectId': typeof DashboardTeamSlugProjectIdRouteWithChildren
   '/dashboard/$teamSlug/settings': typeof DashboardTeamSlugSettingsRoute
   '/dashboard/$teamSlug/': typeof DashboardTeamSlugIndexRoute
@@ -237,6 +255,8 @@ export interface FileRouteTypes {
     | '/sign-up/$'
     | '/watch/$publicId'
     | '/dashboard/'
+    | '/api/auth/jwks'
+    | '/api/auth/token'
     | '/dashboard/$teamSlug/$projectId'
     | '/dashboard/$teamSlug/settings'
     | '/dashboard/$teamSlug/'
@@ -259,6 +279,8 @@ export interface FileRouteTypes {
     | '/sign-up/$'
     | '/watch/$publicId'
     | '/dashboard'
+    | '/api/auth/jwks'
+    | '/api/auth/token'
     | '/dashboard/$teamSlug/settings'
     | '/dashboard/$teamSlug'
     | '/dashboard/$teamSlug/$projectId/$videoId'
@@ -282,6 +304,8 @@ export interface FileRouteTypes {
     | '/sign-up/$'
     | '/watch/$publicId'
     | '/dashboard/'
+    | '/api/auth/jwks'
+    | '/api/auth/token'
     | '/dashboard/$teamSlug/$projectId'
     | '/dashboard/$teamSlug/settings'
     | '/dashboard/$teamSlug/'
@@ -303,6 +327,8 @@ export interface RootRouteChildren {
   InviteTokenRoute: typeof InviteTokenRoute
   ShareTokenRoute: typeof ShareTokenRoute
   WatchPublicIdRoute: typeof WatchPublicIdRoute
+  ApiAuthJwksRoute: typeof ApiAuthJwksRoute
+  ApiAuthTokenRoute: typeof ApiAuthTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -447,6 +473,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTeamSlugProjectIdRouteImport
       parentRoute: typeof DashboardTeamSlugRoute
     }
+    '/api/auth/token': {
+      id: '/api/auth/token'
+      path: '/api/auth/token'
+      fullPath: '/api/auth/token'
+      preLoaderRoute: typeof ApiAuthTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/jwks': {
+      id: '/api/auth/jwks'
+      path: '/api/auth/jwks'
+      fullPath: '/api/auth/jwks'
+      preLoaderRoute: typeof ApiAuthJwksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/$teamSlug/$projectId/': {
       id: '/dashboard/$teamSlug/$projectId/'
       path: '/'
@@ -546,6 +586,8 @@ const rootRouteChildren: RootRouteChildren = {
   InviteTokenRoute: InviteTokenRoute,
   ShareTokenRoute: ShareTokenRoute,
   WatchPublicIdRoute: WatchPublicIdRoute,
+  ApiAuthJwksRoute: ApiAuthJwksRoute,
+  ApiAuthTokenRoute: ApiAuthTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

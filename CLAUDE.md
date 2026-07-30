@@ -8,27 +8,29 @@ Video review platform for creative teams. Built by Theo.
 
 Brutalist, typographic, minimal. The design should feel bold and direct—like a poster, not a dashboard. Prioritize clarity over decoration. Let typography and whitespace do the heavy lifting.
 
-### Colors
+### Colors (Numan brand)
 
-- **Background**: `#f0f0e8` (warm cream)
-- **Text**: `#1a1a1a` (near-black)
-- **Muted text**: `#888888`
-- **Primary accent**: `#2d5a2d` (deep forest green)
-- **Accent hover**: `#3a6a3a`
-- **Highlight**: `#7cb87c` (soft green for emphasis)
-- **Borders**: `#1a1a1a` (strong) or `#ccc` (subtle)
-- **Inverted sections**: `#1a1a1a` background with `#f0f0e8` text
+- **Background**: `#f5f5f9` (lilac-white canvas)
+- **Text**: `#272357` (dark indigo)
+- **Muted text**: `#6b6b8a`
+- **Primary accent**: `#5252e6` (Numan indigo)
+- **Accent hover**: `#4343cf`
+- **Highlight**: `#8c8cf0` (light indigo for emphasis)
+- **Borders**: `#272357` (strong) or `#dadae8` (subtle keyline)
+- **Inverted sections**: `#272357` background with `#f5f5f9` text
+- **Semantic**: success `#0a9d63` · error `#e50000` · warning `#ffa32c`
 
 ### Typography
 
 - **Headings**: Font-black (900 weight), tight tracking
+- **Typeface**: DM Sans (body) + DM Mono (technical info) — Numan brand
 - **Body**: Regular weight, clean and readable
 - **Monospace**: For technical info, timestamps, stats
 - Use size contrast dramatically—massive headlines with small supporting text
 
 ### Borders & Spacing
 
-- Strong 2px borders in `#1a1a1a` for section dividers and cards
+- Strong 2px borders in `#272357` for section dividers and cards
 - Generous padding (p-6 to p-8 typical)
 - Clear visual hierarchy through spacing
 

@@ -154,7 +154,7 @@ function VersionSelectorOption({
         {...prewarmIntentHandlers}
       >
         <span className="font-bold">v{version.versionNumber}</span>
-        <span className="ml-2 truncate text-xs text-[#888]">
+        <span className="ml-2 truncate text-xs text-[#6b6b8a]">
           {version._id === currentVideoId
             ? `${version.isLatestVersion ? "Viewing latest" : "Viewing"} · ${versionStatusLabel(version.status)}`
             : version.isLatestVersion
@@ -166,7 +166,7 @@ function VersionSelectorOption({
         <DropdownMenuItem
           disabled={deletionPending}
           aria-label={`Delete version v${version.versionNumber}`}
-          className="h-10 w-10 justify-center p-0 text-[#dc2626] focus:text-[#dc2626]"
+          className="h-10 w-10 justify-center p-0 text-[#e50000] focus:text-[#e50000]"
           onSelect={(event) => {
             event.preventDefault();
             const deleteItem = event.currentTarget;
@@ -1022,7 +1022,7 @@ export default function VideoPage() {
   if (context === undefined || video === undefined || shouldCanonicalize) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="text-[#888]">Loading...</div>
+        <div className="text-[#6b6b8a]">Loading...</div>
       </div>
     );
   }
@@ -1030,7 +1030,7 @@ export default function VideoPage() {
   if (context === null || video === null || !resolvedProjectId || !resolvedVideoId) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="text-[#888]">Video not found</div>
+        <div className="text-[#6b6b8a]">Video not found</div>
       </div>
     );
   }
@@ -1106,17 +1106,17 @@ export default function VideoPage() {
         ]}
       >
         {/* Desktop: inline actions */}
-        <div className="hidden items-center gap-3 text-xs text-[#888] 2xl:flex">
+        <div className="hidden items-center gap-3 text-xs text-[#6b6b8a] 2xl:flex">
           <span className="max-w-[100px] truncate">{video.uploaderName}</span>
           {video.duration && (
             <>
-              <span className="text-[#ccc]">·</span>
+              <span className="text-[#dadae8]">·</span>
               <span className="font-mono">{formatDuration(video.duration)}</span>
             </>
           )}
           <VideoWatchers watchers={watchers} />
         </div>
-        <div className="ml-1 hidden flex-shrink-0 items-center gap-3 border-l-2 border-[#1a1a1a]/20 pl-3 lg:flex">
+        <div className="ml-1 hidden flex-shrink-0 items-center gap-3 border-l-2 border-[#272357]/20 pl-3 lg:flex">
           {showVersionSelector && (
             <VersionSelector
               versions={versions}
@@ -1166,7 +1166,7 @@ export default function VideoPage() {
               </DropdownMenuItem>
               {canDelete && !showVersionSelector && (
                 <DropdownMenuItem
-                  className="text-[#dc2626] focus:text-[#dc2626]"
+                  className="text-[#e50000] focus:text-[#e50000]"
                   disabled={deletingVideoId !== null}
                   onSelect={() =>
                     void handleDeleteVersion(
@@ -1262,7 +1262,7 @@ export default function VideoPage() {
               </DropdownMenuItem>
               {canDelete && !showVersionSelector && (
                 <DropdownMenuItem
-                  className="text-[#dc2626] focus:text-[#dc2626]"
+                  className="text-[#e50000] focus:text-[#e50000]"
                   disabled={deletingVideoId !== null}
                   onSelect={() =>
                     void handleDeleteVersion(
@@ -1291,8 +1291,8 @@ export default function VideoPage() {
         {/* Video player area — full black, Frame.io style */}
         <div className="flex min-w-0 flex-1 flex-col overflow-hidden bg-black">
           {video.status === "processing" && isUsingOriginalFallback && activePlaybackUrl ? (
-            <div className="flex flex-shrink-0 items-center gap-2 bg-[#171c17] px-4 py-2 text-sm text-[#e7ede4]">
-              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-[#7cb87c]" />
+            <div className="flex flex-shrink-0 items-center gap-2 bg-[#1c1a38] px-4 py-2 text-sm text-[#e9e9f4]">
+              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-[#8c8cf0]" />
               <span className="font-semibold">Original playback active.</span>
               <span className="text-[#aeb9ac]">720p stream is still encoding.</span>
             </div>
@@ -1300,7 +1300,7 @@ export default function VideoPage() {
 
           {activeOriginalPlaybackLoadError ? (
             <div
-              className="flex flex-shrink-0 items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1d5]"
+              className="flex flex-shrink-0 items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1dc]"
               role="alert"
               aria-live="assertive"
             >
@@ -1315,7 +1315,7 @@ export default function VideoPage() {
 
           {activeOriginalPlaybackIssue && !activeOriginalPlaybackLoadError ? (
             <div
-              className="flex flex-shrink-0 items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1d5]"
+              className="flex flex-shrink-0 items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1dc]"
               role="status"
               aria-live="polite"
               aria-atomic="true"
@@ -1347,7 +1347,7 @@ export default function VideoPage() {
 
           {activeQualityId === "mux720" && (isLoadingPlayback || activePlaybackLoadError) ? (
             <div
-              className="flex flex-shrink-0 items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1d5]"
+              className="flex flex-shrink-0 items-center justify-between gap-3 bg-[#2a2114] px-4 py-2 text-sm text-[#fff1dc]"
               role="status"
               aria-live="polite"
             >
@@ -1443,7 +1443,7 @@ export default function VideoPage() {
                   )}
                   {video.status === "failed" && (
                     <div className="flex max-w-md flex-col items-center gap-3 px-6">
-                      <p className="font-bold text-[#f87171]">Processing failed</p>
+                      <p className="font-bold text-[#ff7a7a]">Processing failed</p>
                       {video.uploadError && (
                         <p className="text-sm text-white/60">{video.uploadError}</p>
                       )}
@@ -1465,7 +1465,7 @@ export default function VideoPage() {
                         </Button>
                       )}
                       {retryFailedProcessingError && (
-                        <p className="text-sm text-[#f87171]">{retryFailedProcessingError}</p>
+                        <p className="text-sm text-[#ff7a7a]">{retryFailedProcessingError}</p>
                       )}
                     </div>
                   )}
@@ -1479,19 +1479,19 @@ export default function VideoPage() {
         <aside
           id="dashboard-discussion-sidebar"
           className={cn(
-            "hidden w-80 flex-col border-l-2 border-[#1a1a1a] bg-[#f0f0e8] transition-[margin] duration-300 motion-reduce:transition-none lg:flex xl:w-96",
+            "hidden w-80 flex-col border-l-2 border-[#272357] bg-[#f5f5f9] transition-[margin] duration-300 motion-reduce:transition-none lg:flex xl:w-96",
             sidebarCollapsed && "pointer-events-none -mr-80 xl:-mr-96",
           )}
           aria-hidden={sidebarCollapsed}
           inert={sidebarCollapsed}
         >
-          <div className="flex flex-shrink-0 items-center justify-between border-b border-[#1a1a1a]/10 px-5 py-4 dark:border-white/10">
-            <h2 className="flex items-center gap-2 text-sm font-semibold tracking-tight text-[#1a1a1a] dark:text-[#f0f0e8]">
+          <div className="flex flex-shrink-0 items-center justify-between border-b border-[#272357]/10 px-5 py-4 dark:border-white/10">
+            <h2 className="flex items-center gap-2 text-sm font-semibold tracking-tight text-[#272357] dark:text-[#f5f5f9]">
               Discussion
             </h2>
             <div className="flex items-center gap-2">
               {comments && comments.length > 0 && (
-                <span className="rounded-full bg-[#1a1a1a]/5 px-2 py-0.5 text-[11px] font-medium text-[#888] dark:bg-white/5">
+                <span className="rounded-full bg-[#272357]/5 px-2 py-0.5 text-[11px] font-medium text-[#6b6b8a] dark:bg-white/5">
                   {comments.length} {comments.length === 1 ? "comment" : "comments"}
                 </span>
               )}
@@ -1517,7 +1517,7 @@ export default function VideoPage() {
             />
           </div>
           {canComment && (
-            <div className="flex-shrink-0 border-t-2 border-[#1a1a1a] bg-[#f0f0e8]">
+            <div className="flex-shrink-0 border-t-2 border-[#272357] bg-[#f5f5f9]">
               <CommentInput
                 videoId={resolvedVideoId}
                 timestampSeconds={currentTime}
@@ -1531,12 +1531,12 @@ export default function VideoPage() {
 
       {/* Comments overlay — mobile */}
       {mobileCommentsOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-[#f0f0e8] lg:hidden">
-          <div className="flex flex-shrink-0 items-center justify-between border-b-2 border-[#1a1a1a] px-5 py-4">
-            <h2 className="flex items-center gap-2 text-sm font-semibold tracking-tight text-[#1a1a1a]">
+        <div className="fixed inset-0 z-50 flex flex-col bg-[#f5f5f9] lg:hidden">
+          <div className="flex flex-shrink-0 items-center justify-between border-b-2 border-[#272357] px-5 py-4">
+            <h2 className="flex items-center gap-2 text-sm font-semibold tracking-tight text-[#272357]">
               Discussion
               {comments && comments.length > 0 && (
-                <span className="rounded-full bg-[#1a1a1a]/5 px-2 py-0.5 text-[11px] font-medium text-[#888]">
+                <span className="rounded-full bg-[#272357]/5 px-2 py-0.5 text-[11px] font-medium text-[#6b6b8a]">
                   {comments.length}
                 </span>
               )}
@@ -1575,7 +1575,7 @@ export default function VideoPage() {
             />
           </div>
           {canComment && (
-            <div className="flex-shrink-0 border-t-2 border-[#1a1a1a] bg-[#f0f0e8]">
+            <div className="flex-shrink-0 border-t-2 border-[#272357] bg-[#f5f5f9]">
               <CommentInput
                 videoId={resolvedVideoId}
                 timestampSeconds={currentTime}
@@ -1597,8 +1597,8 @@ export default function VideoPage() {
           className={cn(
             "fixed top-4 right-4 z-50 flex items-center gap-3 border-2 px-3 py-2 text-sm font-bold shadow-[4px_4px_0px_0px_var(--shadow-color)]",
             deleteNotice.tone === "error"
-              ? "border-[#dc2626] bg-[#fef2f2] text-[#dc2626]"
-              : "border-[#1a1a1a] bg-[#f0f0e8] text-[#1a1a1a]",
+              ? "border-[#e50000] bg-[#feefef] text-[#e50000]"
+              : "border-[#272357] bg-[#f5f5f9] text-[#272357]",
           )}
           role={deleteNotice.tone === "error" ? "alert" : "status"}
           aria-live={deleteNotice.tone === "error" ? "assertive" : "polite"}

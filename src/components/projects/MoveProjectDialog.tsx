@@ -67,39 +67,39 @@ export function MoveProjectDialog({ teamId, project, open, onOpenChange }: MoveP
         </DialogHeader>
 
         {error && (
-          <p className="border-2 border-[#dc2626] bg-[#fef2f2] px-3 py-2 text-sm font-bold text-[#dc2626]">
+          <p className="border-2 border-[#e50000] bg-[#feefef] px-3 py-2 text-sm font-bold text-[#e50000]">
             {error}
           </p>
         )}
 
         {folders === undefined ? (
-          <p className="text-sm text-[#888]">Loading folders...</p>
+          <p className="text-sm text-[#6b6b8a]">Loading folders...</p>
         ) : (
-          <div className="max-h-80 divide-y-2 divide-[#1a1a1a] overflow-y-auto border-2 border-[#1a1a1a]">
+          <div className="max-h-80 divide-y-2 divide-[#272357] overflow-y-auto border-2 border-[#272357]">
             <button
               type="button"
               disabled={isMoving}
               className={cn(
-                "flex w-full items-center gap-2 px-4 py-3 text-left transition-colors hover:bg-[#e8e8e0] disabled:opacity-50",
+                "flex w-full items-center gap-2 px-4 py-3 text-left transition-colors hover:bg-[#e9e9f2] disabled:opacity-50",
               )}
               onClick={() => handleMove(undefined)}
             >
-              <Home className="h-4 w-4 text-[#888]" />
-              <span className="font-bold text-[#1a1a1a]">Top level</span>
+              <Home className="h-4 w-4 text-[#6b6b8a]" />
+              <span className="font-bold text-[#272357]">Top level</span>
             </button>
             {destinations.map((folder) => (
               <button
                 key={folder._id}
                 type="button"
                 disabled={isMoving}
-                className="w-full px-4 py-3 text-left transition-colors hover:bg-[#e8e8e0] disabled:opacity-50"
+                className="w-full px-4 py-3 text-left transition-colors hover:bg-[#e9e9f2] disabled:opacity-50"
                 onClick={() => handleMove(folder._id)}
               >
-                <p className="truncate font-bold text-[#1a1a1a]">{folder.path}</p>
+                <p className="truncate font-bold text-[#272357]">{folder.path}</p>
               </button>
             ))}
             {destinations.length === 0 && (
-              <p className="px-4 py-3 text-sm text-[#888]">No other folders to move into.</p>
+              <p className="px-4 py-3 text-sm text-[#6b6b8a]">No other folders to move into.</p>
             )}
           </div>
         )}

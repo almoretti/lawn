@@ -71,7 +71,7 @@ export function CommentItem({
       className={cn(
         "group relative transition-all",
         isReply ? "py-2" : "p-4",
-        isHighlighted ? "bg-[#2d5a2d]/10" : "hover:bg-[#1a1a1a]/5",
+        isHighlighted ? "bg-[#5252e6]/10" : "hover:bg-[#272357]/5",
         comment.resolved && "opacity-50",
       )}
     >
@@ -83,10 +83,10 @@ export function CommentItem({
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
-              <span className="truncate text-sm font-bold text-[#1a1a1a]">{comment.userName}</span>
+              <span className="truncate text-sm font-bold text-[#272357]">{comment.userName}</span>
               <button
                 onClick={() => onTimestampClick(comment.timestampSeconds)}
-                className="shrink-0 font-mono text-xs font-bold text-[#2d5a2d] hover:text-[#1a1a1a]"
+                className="shrink-0 font-mono text-xs font-bold text-[#5252e6] hover:text-[#272357]"
               >
                 {formatTimestamp(comment.timestampSeconds)}
               </button>
@@ -116,7 +116,7 @@ export function CommentItem({
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem
-                  className="text-[#dc2626] focus:text-[#dc2626]"
+                  className="text-[#e50000] focus:text-[#e50000]"
                   onClick={handleDelete}
                 >
                   <Trash2 className="mr-2 h-4 w-4" />
@@ -125,10 +125,10 @@ export function CommentItem({
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <p className="mt-1 text-sm break-words whitespace-pre-wrap text-[#1a1a1a]">
+          <p className="mt-1 text-sm break-words whitespace-pre-wrap text-[#272357]">
             <CommentText text={comment.text} />
           </p>
-          <p className="mt-1 text-[11px] text-[#888]">
+          <p className="mt-1 text-[11px] text-[#6b6b8a]">
             {formatRelativeTime(comment._creationTime)}
           </p>
         </div>

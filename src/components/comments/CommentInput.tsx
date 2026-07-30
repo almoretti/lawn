@@ -87,7 +87,7 @@ export function CommentInput({
     <form
       onSubmit={handleSubmit}
       className={
-        variant === "seamless" ? "relative w-full bg-[#f0f0e8]" : "relative w-full pr-1 pb-1"
+        variant === "seamless" ? "relative w-full bg-[#f5f5f9]" : "relative w-full pr-1 pb-1"
       }
     >
       <textarea
@@ -99,8 +99,8 @@ export function CommentInput({
         autoFocus={autoFocus}
         className={
           variant === "seamless"
-            ? "block max-h-64 min-h-[100px] w-full resize-none border-0 bg-transparent px-4 pt-4 pb-12 font-sans text-sm leading-relaxed text-[#1a1a1a] transition-all outline-none placeholder:text-[#888] focus:ring-0"
-            : "block max-h-64 min-h-[100px] w-full resize-none border-2 border-[#1a1a1a] bg-[#f0f0e8] px-3 pt-3 pb-12 font-sans text-sm leading-relaxed text-[#1a1a1a] shadow-[4px_4px_0px_0px_var(--shadow-color)] transition-all outline-none placeholder:text-[#888] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-[2px_2px_0px_0px_var(--shadow-color)] focus:ring-0"
+            ? "block max-h-64 min-h-[100px] w-full resize-none border-0 bg-transparent px-4 pt-4 pb-12 font-sans text-sm leading-relaxed text-[#272357] transition-all outline-none placeholder:text-[#6b6b8a] focus:ring-0"
+            : "block max-h-64 min-h-[100px] w-full resize-none border-2 border-[#272357] bg-[#f5f5f9] px-3 pt-3 pb-12 font-sans text-sm leading-relaxed text-[#272357] shadow-[4px_4px_0px_0px_var(--shadow-color)] transition-all outline-none placeholder:text-[#6b6b8a] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-[2px_2px_0px_0px_var(--shadow-color)] focus:ring-0"
         }
         rows={3}
       />

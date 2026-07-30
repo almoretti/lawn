@@ -310,7 +310,7 @@ export default function CompareFrameio() {
                     </span>
                   </li>
                 </ul>
-                <p className="mt-6 border-t border-[#333] pt-4 text-sm text-[var(--foreground-muted)]">
+                <p className="mt-6 border-t border-[#38366d] pt-4 text-sm text-[var(--foreground-muted)]">
                   We do less than Frame.io. Proudly. Turns out "upload, share, comment" is 90% of
                   what anyone actually needs.
                 </p>

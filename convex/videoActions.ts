@@ -15,8 +15,10 @@ import {
   buildMuxPlaybackUrl,
   buildMuxThumbnailUrl,
   createMuxAssetFromInputUrl,
+  createMuxAssetViaDirectUpload,
   createPublicPlaybackId,
   getMuxAsset,
+  isMuxConfigured,
 } from "./mux";
 import { BUCKET_NAME, getS3Client } from "./s3";
 import {
@@ -244,6 +246,15 @@ function canResumeMultipartUpload(
     video.s3MultipartPartCount > 0 &&
     video.fileSize === fileSize
   );
+}
+
+function isLoopbackUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname;
+    return host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "0.0.0.0";
+  } catch {
+    return false;
+  }
 }
 
 function shouldDeleteUploadedObjectOnFailure(error: unknown): boolean {
@@ -802,10 +813,30 @@ export const markUploadComplete = action({
         videoId: args.videoId,
       });
 
+      // Without Mux the video stays "processing" and the dashboard player
+      // streams the original file straight from the bucket.
+      if (!isMuxConfigured()) {
+        console.warn("MUX_TOKEN_ID/SECRET not set — skipping Mux ingest; original-only playback.");
+        return { success: true };
+      }
+
       const ingestUrl = await buildSignedBucketObjectUrl(video.s3Key, {
         expiresIn: 60 * 60 * 24,
       });
-      const asset = await createMuxAssetFromInputUrl(args.videoId, ingestUrl);
+      // Mux pulls the input from the URL, so a loopback bucket (local MinIO)
+      // is unreachable from Mux's cloud — relay the bytes via a direct upload
+      // instead. Local files only; production buckets use the pull flow.
+      let asset: { id?: string | null };
+      if (isLoopbackUrl(ingestUrl)) {
+        const object = await fetch(ingestUrl);
+        if (!object.ok) {
+          throw new Error(`Failed to read uploaded object for Mux relay: ${object.status}`);
+        }
+        const bytes = await object.arrayBuffer();
+        asset = await createMuxAssetViaDirectUpload(args.videoId, bytes, normalizedContentType);
+      } else {
+        asset = await createMuxAssetFromInputUrl(args.videoId, ingestUrl);
+      }
       if (asset.id) {
         await ctx.runMutation(internal.videos.setMuxAssetReference, {
           videoId: args.videoId,
@@ -985,6 +1016,9 @@ export const sweepMuxAssetStatuses = internalAction({
     reconciled: v.number(),
   }),
   handler: async (ctx) => {
+    if (!isMuxConfigured()) {
+      return { checked: 0, reconciled: 0 };
+    }
     const lockOwner = crypto.randomUUID();
     const locked = await ctx.runMutation(internal.videos.claimCronLock, {
       name: MUX_STATUS_SWEEP_LOCK,

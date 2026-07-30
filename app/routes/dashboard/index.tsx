@@ -37,21 +37,9 @@ type DashboardProjectCardProps = {
   onOpen: () => void;
 };
 
-function formatTeamPlanLabel(plan: string, billingStatus?: string, stripeSubscriptionId?: string) {
-  if (!stripeSubscriptionId && billingStatus !== "active") {
-    return "Unpaid";
-  }
-
-  if (
-    billingStatus &&
-    billingStatus !== "active" &&
-    billingStatus !== "trialing" &&
-    billingStatus !== "past_due"
-  ) {
-    return "Unpaid";
-  }
-  if (plan === "pro" || plan === "team") return "Pro";
-  return "Basic";
+// Internal deployment: billing is disabled, every team has full access.
+function formatTeamPlanLabel() {
+  return "Internal";
 }
 
 function DashboardProjectCard({ teamSlug, project, onOpen }: DashboardProjectCardProps) {
@@ -65,13 +53,13 @@ function DashboardProjectCard({ teamSlug, project, onOpen }: DashboardProjectCar
 
   return (
     <Card
-      className="group relative cursor-pointer transition-colors hover:bg-[#e8e8e0]"
+      className="group relative cursor-pointer transition-colors hover:bg-[#e9e9f2]"
       onClick={onOpen}
       {...prewarmIntentHandlers}
     >
       <button
         type="button"
-        className="pointer-events-none absolute inset-0 z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2d5a2d]"
+        className="pointer-events-none absolute inset-0 z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5252e6]"
         aria-label={`Open project ${project.name}`}
         onClick={(event) => {
           event.stopPropagation();
@@ -94,7 +82,7 @@ function DashboardProjectCard({ teamSlug, project, onOpen }: DashboardProjectCar
         </div>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-between text-sm text-[#888] transition-colors group-hover:text-[#1a1a1a]">
+        <div className="flex items-center justify-between text-sm text-[#6b6b8a] transition-colors group-hover:text-[#272357]">
           <span>Open project</span>
           <ArrowRight className="h-4 w-4" />
         </div>
@@ -120,8 +108,8 @@ export default function DashboardPage() {
         <div className="animate-in fade-in flex flex-1 items-center justify-center p-8 duration-300">
           <Card className="w-full max-w-sm text-center">
             <CardHeader>
-              <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center bg-[#e8e8e0]">
-                <Users className="h-6 w-6 text-[#888]" />
+              <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center bg-[#e9e9f2]">
+                <Users className="h-6 w-6 text-[#6b6b8a]" />
               </div>
               <CardTitle className="text-lg">Create your first team</CardTitle>
               <CardDescription>
@@ -162,25 +150,19 @@ export default function DashboardPage() {
               <div key={team._id} className="mb-12 last:mb-0">
                 <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
-                    <h2 className="text-xl font-black text-[#1a1a1a]">{team.name}</h2>
-                    <Badge variant="secondary">
-                      {formatTeamPlanLabel(
-                        team.plan,
-                        team.billingStatus,
-                        team.stripeSubscriptionId,
-                      )}
-                    </Badge>
+                    <h2 className="text-xl font-black text-[#272357]">{team.name}</h2>
+                    <Badge variant="secondary">{formatTeamPlanLabel()}</Badge>
                   </div>
                   <div className="flex items-center gap-4">
                     <Link
                       to={teamSettingsPath(team.slug)}
-                      className="text-sm font-bold text-[#888] transition-colors hover:text-[#1a1a1a]"
+                      className="text-sm font-bold text-[#6b6b8a] transition-colors hover:text-[#272357]"
                     >
                       Billing
                     </Link>
                     <Link
                       to={teamHomePath(team.slug)}
-                      className="flex items-center gap-1 text-sm font-bold text-[#888] transition-colors hover:text-[#1a1a1a]"
+                      className="flex items-center gap-1 text-sm font-bold text-[#6b6b8a] transition-colors hover:text-[#272357]"
                     >
                       Manage team <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
@@ -190,8 +172,8 @@ export default function DashboardPage() {
                 {team.projects.length === 0 ? (
                   <Card className="max-w-sm text-center">
                     <CardHeader>
-                      <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center bg-[#e8e8e0]">
-                        <Folder className="h-6 w-6 text-[#888]" />
+                      <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center bg-[#e9e9f2]">
+                        <Folder className="h-6 w-6 text-[#6b6b8a]" />
                       </div>
                       <CardTitle className="text-lg">No projects yet</CardTitle>
                       <CardDescription>

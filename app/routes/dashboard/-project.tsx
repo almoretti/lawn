@@ -382,7 +382,7 @@ function VideoIntentTarget({
     >
       <button
         type="button"
-        className="pointer-events-none absolute inset-0 z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2d5a2d]"
+        className="pointer-events-none absolute inset-0 z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5252e6]"
         aria-label={dragPayload.kind === "video" ? `Open video ${dragPayload.title}` : "Open video"}
         onClick={(event) => {
           event.stopPropagation();
@@ -658,7 +658,7 @@ export default function ProjectPage({
   if (context === null || project === null) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="text-[#888]">Project not found</div>
+        <div className="text-[#6b6b8a]">Project not found</div>
       </div>
     );
   }
@@ -727,7 +727,7 @@ export default function ProjectPage({
             </Button>
           )}
           {/* View toggle */}
-          <div className="flex items-center border-2 border-[#1a1a1a] p-0.5">
+          <div className="flex items-center border-2 border-[#272357] p-0.5">
             <button
               type="button"
               aria-label="Show grid view"
@@ -736,8 +736,8 @@ export default function ProjectPage({
               className={cn(
                 "p-1.5 transition-colors",
                 viewMode === "grid"
-                  ? "bg-[#1a1a1a] text-[#f0f0e8]"
-                  : "text-[#888] hover:text-[#1a1a1a]",
+                  ? "bg-[#272357] text-[#f5f5f9]"
+                  : "text-[#6b6b8a] hover:text-[#272357]",
               )}
             >
               <Grid3X3 className="h-4 w-4" />
@@ -750,8 +750,8 @@ export default function ProjectPage({
               className={cn(
                 "p-1.5 transition-colors",
                 viewMode === "list"
-                  ? "bg-[#1a1a1a] text-[#f0f0e8]"
-                  : "text-[#888] hover:text-[#1a1a1a]",
+                  ? "bg-[#272357] text-[#f5f5f9]"
+                  : "text-[#6b6b8a] hover:text-[#272357]",
               )}
             >
               <LayoutList className="h-4 w-4" />
@@ -768,7 +768,7 @@ export default function ProjectPage({
             className="pointer-events-none sticky top-2 z-20 mr-3 ml-auto h-0 w-fit"
             role="status"
           >
-            <span className="block bg-[#f0f0e8] px-2 py-1 text-xs font-bold text-[#888]">
+            <span className="block bg-[#f5f5f9] px-2 py-1 text-xs font-bold text-[#6b6b8a]">
               Sorting videos…
             </span>
           </div>
@@ -781,7 +781,7 @@ export default function ProjectPage({
               isLoadingData ? "opacity-0" : "opacity-100",
             )}
           >
-            <h2 className="mb-3 text-xs font-black tracking-wider text-[#888] uppercase">
+            <h2 className="mb-3 text-xs font-black tracking-wider text-[#6b6b8a] uppercase">
               Folders
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -860,9 +860,9 @@ export default function ProjectPage({
                   >
                     <div
                       className={cn(
-                        "relative aspect-video overflow-hidden border-2 border-[#1a1a1a] bg-[#e8e8e0] transition-all group-hover:translate-x-[2px] group-hover:translate-y-[2px]",
+                        "relative aspect-video overflow-hidden border-2 border-[#272357] bg-[#e9e9f2] transition-all group-hover:translate-x-[2px] group-hover:translate-y-[2px]",
                         isVersionStack
-                          ? "shadow-[3px_3px_0px_0px_#c8c8c0,6px_6px_0px_0px_var(--shadow-color)] group-hover:shadow-[2px_2px_0px_0px_#c8c8c0,4px_4px_0px_0px_var(--shadow-color)]"
+                          ? "shadow-[3px_3px_0px_0px_#c9c9dd,6px_6px_0px_0px_var(--shadow-color)] group-hover:shadow-[2px_2px_0px_0px_#c9c9dd,4px_4px_0px_0px_var(--shadow-color)]"
                           : "shadow-[4px_4px_0px_0px_var(--shadow-color)] group-hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
                       )}
                     >
@@ -878,7 +878,7 @@ export default function ProjectPage({
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <Play className="h-10 w-10 text-[#888]" />
+                          <Play className="h-10 w-10 text-[#6b6b8a]" />
                         </div>
                       )}
                       {video.status === "ready" && video.duration && (
@@ -889,7 +889,7 @@ export default function ProjectPage({
                       {isVersionStack && (
                         <Badge
                           variant="default"
-                          className="absolute top-2 left-2 z-10 px-1.5 py-0 text-[10px] text-[#f0f0e8]"
+                          className="absolute top-2 left-2 z-10 px-1.5 py-0 text-[10px] text-[#f5f5f9]"
                         >
                           Version {video.versionNumber}
                         </Badge>
@@ -955,7 +955,7 @@ export default function ProjectPage({
                             )}
                             {canDeleteVideo && (
                               <DropdownMenuItem
-                                className="text-[#dc2626] focus:text-[#dc2626]"
+                                className="text-[#e50000] focus:text-[#e50000]"
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   handleDeleteVideo(video._id, video.versionNumber);
@@ -972,7 +972,7 @@ export default function ProjectPage({
                     <div className="mt-2.5">
                       <ExpandableTitle
                         title={video.title}
-                        className="text-[15px] leading-tight font-black text-[#1a1a1a]"
+                        className="text-[15px] leading-tight font-black text-[#272357]"
                       />
                       <div className="mt-1.5 flex items-center gap-3">
                         <VideoWorkflowStatusControl
@@ -984,19 +984,19 @@ export default function ProjectPage({
                           }
                         />
                         {video.commentCount > 0 && (
-                          <span className="inline-flex items-center gap-1 text-[11px] text-[#888]">
+                          <span className="inline-flex items-center gap-1 text-[11px] text-[#6b6b8a]">
                             <MessageSquare className="h-3 w-3" />
                             {video.commentCount}
                             {video.commentCountIsCapped ? "+" : ""}
                           </span>
                         )}
                         {watchingCount !== undefined && watchingCount > 0 && (
-                          <span className="inline-flex items-center gap-1 text-[11px] text-[#1a1a1a]">
+                          <span className="inline-flex items-center gap-1 text-[11px] text-[#272357]">
                             <Eye className="h-3 w-3" />
                             {watchingCount}
                           </span>
                         )}
-                        <span className="ml-auto font-mono text-[11px] text-[#888]">
+                        <span className="ml-auto font-mono text-[11px] text-[#6b6b8a]">
                           {formatRelativeTime(video._creationTime)}
                         </span>
                       </div>
@@ -1010,7 +1010,7 @@ export default function ProjectPage({
           /* List View - Horizontal rows */
           <div
             className={cn(
-              "divide-y-2 divide-[#1a1a1a] transition-opacity duration-300",
+              "divide-y-2 divide-[#272357] transition-opacity duration-300",
               isLoadingData ? "opacity-0" : "opacity-100",
             )}
           >
@@ -1027,7 +1027,7 @@ export default function ProjectPage({
               return (
                 <VideoIntentTarget
                   key={video._id}
-                  className="group flex cursor-pointer items-center gap-5 px-6 py-3 transition-colors hover:bg-[#e8e8e0]"
+                  className="group flex cursor-pointer items-center gap-5 px-6 py-3 transition-colors hover:bg-[#e9e9f2]"
                   teamSlug={resolvedTeamSlug}
                   projectId={activeProjectId}
                   videoId={video._id}
@@ -1050,9 +1050,9 @@ export default function ProjectPage({
                   {/* Thumbnail */}
                   <div
                     className={cn(
-                      "relative aspect-video w-44 shrink-0 overflow-hidden border-2 border-[#1a1a1a] bg-[#e8e8e0] transition-all group-hover:translate-x-[2px] group-hover:translate-y-[2px]",
+                      "relative aspect-video w-44 shrink-0 overflow-hidden border-2 border-[#272357] bg-[#e9e9f2] transition-all group-hover:translate-x-[2px] group-hover:translate-y-[2px]",
                       isVersionStack
-                        ? "shadow-[3px_3px_0px_0px_#c8c8c0,6px_6px_0px_0px_var(--shadow-color)] group-hover:shadow-[2px_2px_0px_0px_#c8c8c0,4px_4px_0px_0px_var(--shadow-color)]"
+                        ? "shadow-[3px_3px_0px_0px_#c9c9dd,6px_6px_0px_0px_var(--shadow-color)] group-hover:shadow-[2px_2px_0px_0px_#c9c9dd,4px_4px_0px_0px_var(--shadow-color)]"
                         : "shadow-[4px_4px_0px_0px_var(--shadow-color)] group-hover:shadow-[2px_2px_0px_0px_var(--shadow-color)]",
                     )}
                   >
@@ -1068,7 +1068,7 @@ export default function ProjectPage({
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <Play className="h-6 w-6 text-[#888]" />
+                        <Play className="h-6 w-6 text-[#6b6b8a]" />
                       </div>
                     )}
                     {video.status !== "ready" && (
@@ -1088,7 +1088,7 @@ export default function ProjectPage({
                     {isVersionStack && (
                       <Badge
                         variant="default"
-                        className="absolute top-1 left-1 z-10 px-1 py-0 text-[9px] text-[#f0f0e8]"
+                        className="absolute top-1 left-1 z-10 px-1 py-0 text-[9px] text-[#f5f5f9]"
                       >
                         Version {video.versionNumber}
                       </Badge>
@@ -1097,7 +1097,7 @@ export default function ProjectPage({
 
                   {/* Info */}
                   <div className="min-w-0 flex-1">
-                    <ExpandableTitle title={video.title} className="font-black text-[#1a1a1a]" />
+                    <ExpandableTitle title={video.title} className="font-black text-[#272357]" />
                     <div className="mt-1 flex items-center gap-3">
                       <VideoWorkflowStatusControl
                         status={video.workflowStatus}
@@ -1108,23 +1108,23 @@ export default function ProjectPage({
                         }
                       />
                       {video.commentCount > 0 && (
-                        <span className="inline-flex items-center gap-1 text-xs text-[#888]">
+                        <span className="inline-flex items-center gap-1 text-xs text-[#6b6b8a]">
                           <MessageSquare className="h-3.5 w-3.5" />
                           {video.commentCount}
                           {video.commentCountIsCapped ? "+" : ""}
                         </span>
                       )}
                       {watchingCount !== undefined && watchingCount > 0 && (
-                        <span className="inline-flex items-center gap-1 text-xs text-[#1a1a1a]">
+                        <span className="inline-flex items-center gap-1 text-xs text-[#272357]">
                           <Eye className="h-3.5 w-3.5" />
                           {watchingCount}
                         </span>
                       )}
-                      <span className="font-mono text-xs text-[#888]">
+                      <span className="font-mono text-xs text-[#6b6b8a]">
                         {formatRelativeTime(video._creationTime)}
                       </span>
                       {video.uploaderName && (
-                        <span className="text-xs text-[#888]">{video.uploaderName}</span>
+                        <span className="text-xs text-[#6b6b8a]">{video.uploaderName}</span>
                       )}
                     </div>
                   </div>
@@ -1135,7 +1135,7 @@ export default function ProjectPage({
                       <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
                         <button
                           type="button"
-                          className="inline-flex h-8 w-8 cursor-pointer items-center justify-center text-[#888] hover:text-[#1a1a1a]"
+                          className="inline-flex h-8 w-8 cursor-pointer items-center justify-center text-[#6b6b8a] hover:text-[#272357]"
                           aria-label={`Open actions for ${video.title}`}
                         >
                           <MoreVertical className="h-4 w-4" aria-hidden="true" />
@@ -1181,7 +1181,7 @@ export default function ProjectPage({
                         )}
                         {canDeleteVideo && (
                           <DropdownMenuItem
-                            className="text-[#dc2626] focus:text-[#dc2626]"
+                            className="text-[#e50000] focus:text-[#e50000]"
                             onClick={(e) => {
                               e.stopPropagation();
                               handleDeleteVideo(video._id, video.versionNumber);
@@ -1220,8 +1220,8 @@ export default function ProjectPage({
             className={cn(
               "border-2 px-3 py-2 text-sm font-bold shadow-[4px_4px_0px_0px_var(--shadow-color)]",
               shareToast.tone === "success"
-                ? "border-[#1a1a1a] bg-[#f0f0e8] text-[#1a1a1a]"
-                : "border-[#dc2626] bg-[#fef2f2] text-[#dc2626]",
+                ? "border-[#272357] bg-[#f5f5f9] text-[#272357]"
+                : "border-[#e50000] bg-[#feefef] text-[#e50000]",
             )}
           >
             <p>{shareToast.message}</p>
@@ -1249,7 +1249,7 @@ export default function ProjectPage({
           <button
             type="button"
             onClick={() => setDndError(null)}
-            className="border-2 border-[#dc2626] bg-[#fef2f2] px-3 py-2 text-sm font-bold text-[#dc2626] shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+            className="border-2 border-[#e50000] bg-[#feefef] px-3 py-2 text-sm font-bold text-[#e50000] shadow-[4px_4px_0px_0px_var(--shadow-color)]"
           >
             {dndError}
           </button>

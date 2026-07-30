@@ -1,10 +1,8 @@
 "use client";
 
-import { ConvexReactClient } from "convex/react";
-import { ConvexProviderWithClerk } from "convex/react-clerk";
-import { useAuth } from "@clerk/tanstack-react-start";
+import { ConvexReactClient, ConvexProviderWithAuth } from "convex/react";
 import type { ReactNode } from "react";
-import { ClerkClientProvider } from "@/lib/clerk";
+import { AppAuthProvider, useConvexAuthBridge } from "@/lib/auth";
 
 const convexUrl = import.meta.env.VITE_CONVEX_URL;
 
@@ -16,17 +14,17 @@ const convex = new ConvexReactClient(convexUrl);
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
   return (
-    <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+    <ConvexProviderWithAuth client={convex} useAuth={useConvexAuthBridge}>
       {children}
-    </ConvexProviderWithClerk>
+    </ConvexProviderWithAuth>
   );
 }
 
-export function ClerkConvexProvider({ children }: { children: ReactNode }) {
+export function AppConvexProvider({ children }: { children: ReactNode }) {
   return (
-    <ClerkClientProvider>
+    <AppAuthProvider>
       <ConvexClientProvider>{children}</ConvexClientProvider>
-    </ClerkClientProvider>
+    </AppAuthProvider>
   );
 }
 

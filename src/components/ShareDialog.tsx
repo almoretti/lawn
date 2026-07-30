@@ -268,7 +268,7 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
         </DialogHeader>
 
         {isViewer ? (
-          <p className="border-2 border-[#1a1a1a] bg-[#e8e8e0] px-3 py-2 text-sm text-[#1a1a1a]">
+          <p className="border-2 border-[#272357] bg-[#e9e9f2] px-3 py-2 text-sm text-[#272357]">
             View-only access: you can copy or open links, but only team members can change sharing
             settings.
           </p>
@@ -287,8 +287,8 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
             className={cn(
               "border-2 px-3 py-2 text-sm font-bold",
               copyStatus.tone === "success"
-                ? "border-[#2d5a2d] bg-[#dce8d8] text-[#2d5a2d]"
-                : "border-[#dc2626] bg-[#fee2e2] text-[#991b1b]",
+                ? "border-[#5252e6] bg-[#dce8d8] text-[#5252e6]"
+                : "border-[#e50000] bg-[#fee2e2] text-[#991b1b]",
             )}
           >
             <p>{copyStatus.message}</p>
@@ -327,7 +327,7 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
               Private
             </Button>
           </div>
-          <p className="text-xs text-[#888]">
+          <p className="text-xs text-[#6b6b8a]">
             Private disables the public URL. Restricted share links still work.
           </p>
         </div>
@@ -337,7 +337,7 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
           <div className="space-y-3">
             {publicWatchPath ? (
               <div className="flex items-center gap-2">
-                <code className="min-w-0 flex-1 truncate border-2 border-[#1a1a1a] bg-[#e8e8e0] px-3 py-2 font-mono text-sm">
+                <code className="min-w-0 flex-1 truncate border-2 border-[#272357] bg-[#e9e9f2] px-3 py-2 font-mono text-sm">
                   {publicWatchPath}
                 </code>
                 <Button
@@ -365,14 +365,14 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
 
             <div className="flex items-center justify-between gap-4">
               <div>
-                <h3 className="text-sm font-bold text-[#1a1a1a]">Version browsing</h3>
-                <p className="text-xs text-[#888]">Let viewers switch between versions.</p>
+                <h3 className="text-sm font-bold text-[#272357]">Version browsing</h3>
+                <p className="text-xs text-[#6b6b8a]">Let viewers switch between versions.</p>
               </div>
               <div className="flex shrink-0 items-center gap-2.5">
                 <span
                   className={cn(
                     "text-xs font-bold tracking-wide uppercase",
-                    versionBrowsingEnabled ? "text-[#2d5a2d]" : "text-[#888]",
+                    versionBrowsingEnabled ? "text-[#5252e6]" : "text-[#6b6b8a]",
                   )}
                 >
                   {versionBrowsingEnabled ? "On" : "Off"}
@@ -385,13 +385,13 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
                   disabled={!canManageSharing || isUpdatingVersionBrowsing}
                   onClick={() => void handleSetVersionBrowsing(!versionBrowsingEnabled)}
                   className={cn(
-                    "relative h-7 w-12 shrink-0 border-2 border-[#1a1a1a] transition-colors disabled:opacity-50",
-                    versionBrowsingEnabled ? "bg-[#2d5a2d]" : "bg-[#ccc]",
+                    "relative h-7 w-12 shrink-0 border-2 border-[#272357] transition-colors disabled:opacity-50",
+                    versionBrowsingEnabled ? "bg-[#5252e6]" : "bg-[#dadae8]",
                   )}
                 >
                   <span
                     className={cn(
-                      "absolute top-1 h-4 w-4 border-2 border-[#1a1a1a] bg-[#f0f0e8] transition-all",
+                      "absolute top-1 h-4 w-4 border-2 border-[#272357] bg-[#f5f5f9] transition-all",
                       versionBrowsingEnabled ? "left-[26px]" : "left-0.5",
                     )}
                   />
@@ -406,8 +406,8 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
         {/* Restricted links */}
         <div className="space-y-3">
           <div>
-            <h3 className="text-sm font-bold text-[#1a1a1a]">Restricted links</h3>
-            <p className="text-xs text-[#888]">
+            <h3 className="text-sm font-bold text-[#272357]">Restricted links</h3>
+            <p className="text-xs text-[#6b6b8a]">
               Time-limited, optionally password-protected links.
             </p>
           </div>
@@ -467,23 +467,23 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
           ) : null}
 
           {shareLinks === undefined ? (
-            <p role="status" aria-live="polite" className="text-sm text-[#888]">
+            <p role="status" aria-live="polite" className="text-sm text-[#6b6b8a]">
               Loading links...
             </p>
           ) : shareLinks.length === 0 ? (
-            <p className="text-sm text-[#888]">No share links yet</p>
+            <p className="text-sm text-[#6b6b8a]">No share links yet</p>
           ) : (
-            <div className="max-h-64 divide-y-2 divide-[#1a1a1a] overflow-y-auto border-2 border-[#1a1a1a]">
+            <div className="max-h-64 divide-y-2 divide-[#272357] overflow-y-auto border-2 border-[#272357]">
               {shareLinks.map((link) => (
                 <div key={link._id} className="flex items-center justify-between gap-2 p-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <code className="max-w-[200px] truncate bg-[#e8e8e0] px-2 py-0.5 font-mono text-sm">
+                      <code className="max-w-[200px] truncate bg-[#e9e9f2] px-2 py-0.5 font-mono text-sm">
                         /share/{link.token}
                       </code>
                       {link.isExpired ? <Badge variant="destructive">Expired</Badge> : null}
                     </div>
-                    <div className="mt-1 flex items-center gap-3 text-xs text-[#888]">
+                    <div className="mt-1 flex items-center gap-3 text-xs text-[#6b6b8a]">
                       <span className="flex items-center gap-1">
                         <Eye className="h-3 w-3" />
                         {link.viewCount} views
@@ -507,7 +507,7 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
                       aria-label="Copy restricted link"
                     >
                       {copiedId === link.token ? (
-                        <Check className="h-4 w-4 text-[#2d5a2d]" />
+                        <Check className="h-4 w-4 text-[#5252e6]" />
                       ) : (
                         <Copy className="h-4 w-4" />
                       )}
@@ -524,7 +524,7 @@ export function ShareDialog({ videoId, open, onOpenChange }: ShareDialogProps) {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="text-[#dc2626] hover:text-[#dc2626]"
+                        className="text-[#e50000] hover:text-[#e50000]"
                         disabled={deletingLinkId !== null}
                         onClick={() => void handleDeleteLink(link._id)}
                         aria-label="Delete restricted link"

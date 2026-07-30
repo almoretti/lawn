@@ -53,15 +53,15 @@ export default function ForVideoEditors() {
   return (
     <MarketingLayout>
       {/* Hero */}
-      <section className="border-b-2 border-[#1a1a1a] bg-[var(--background)] px-6 py-24 md:py-32">
+      <section className="border-b-2 border-[#272357] bg-[var(--background)] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
-          <div className="mb-6 text-sm font-bold tracking-widest text-[#888] uppercase">
+          <div className="mb-6 text-sm font-bold tracking-widest text-[#6b6b8a] uppercase">
             FOR VIDEO EDITORS
           </div>
           <h1 className="mb-8 text-5xl leading-[0.85] font-black tracking-tighter uppercase md:text-7xl lg:text-8xl">
             VIDEO REVIEW THAT EDITORS ACTUALLY WANT TO USE.
           </h1>
-          <p className="mb-12 max-w-3xl text-xl font-medium text-[#888] md:text-2xl">
+          <p className="mb-12 max-w-3xl text-xl font-medium text-[#6b6b8a] md:text-2xl">
             Your client said "make it pop" on a 47-minute timeline. You deserve a review tool that
             at least tells you where they meant. lawn gives you frame-accurate feedback, instant
             playback, and a workflow that doesn't fight your NLE.
@@ -69,13 +69,13 @@ export default function ForVideoEditors() {
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link
               to="/sign-up"
-              className="border-2 border-[#1a1a1a] bg-[#1a1a1a] px-8 py-4 text-center text-lg font-black tracking-wider text-[#f0f0e8] uppercase shadow-[6px_6px_0px_0px_var(--shadow-color)] transition-colors hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#2d5a2d] hover:shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+              className="border-2 border-[#272357] bg-[#272357] px-8 py-4 text-center text-lg font-black tracking-wider text-[#f5f5f9] uppercase shadow-[6px_6px_0px_0px_var(--shadow-color)] transition-colors hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-[#5252e6] hover:shadow-[4px_4px_0px_0px_var(--shadow-color)]"
             >
               START FREE TRIAL
             </Link>
             <div className="flex items-center gap-3 px-4">
               <span className="text-2xl font-black">$5/mo</span>
-              <span className="text-sm font-bold tracking-wider text-[#888] uppercase">
+              <span className="text-sm font-bold tracking-wider text-[#6b6b8a] uppercase">
                 flat, not per seat
               </span>
             </div>
@@ -84,12 +84,12 @@ export default function ForVideoEditors() {
       </section>
 
       {/* Pain Points */}
-      <section className="border-b-2 border-[#1a1a1a] bg-[#e8e8e0] px-6 py-24 md:py-32">
+      <section className="border-b-2 border-[#272357] bg-[#e9e9f2] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-4 text-center text-4xl leading-none font-black tracking-tighter uppercase md:text-6xl">
             THE PAIN IS REAL.
           </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-center text-lg font-medium text-[#888]">
+          <p className="mx-auto mb-16 max-w-2xl text-center text-lg font-medium text-[#6b6b8a]">
             Every editor knows these problems. We built lawn to fix them.
           </p>
 
@@ -97,11 +97,11 @@ export default function ForVideoEditors() {
             {painPoints.map((point) => (
               <div
                 key={point.id}
-                className="border-2 border-[#1a1a1a] bg-[#f0f0e8] shadow-[8px_8px_0px_0px_var(--shadow-color)] transition-all hover:translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--shadow-color)]"
+                className="border-2 border-[#272357] bg-[#f5f5f9] shadow-[8px_8px_0px_0px_var(--shadow-color)] transition-all hover:translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--shadow-color)]"
               >
-                <div className="flex items-center justify-between border-b-2 border-[#1a1a1a] px-6 py-4">
-                  <span className="text-sm font-black text-[#888]">/{point.id}</span>
-                  <span className="text-sm font-bold tracking-wider text-[#2d5a2d] uppercase">
+                <div className="flex items-center justify-between border-b-2 border-[#272357] px-6 py-4">
+                  <span className="text-sm font-black text-[#6b6b8a]">/{point.id}</span>
+                  <span className="text-sm font-bold tracking-wider text-[#5252e6] uppercase">
                     SOLVED
                   </span>
                 </div>
@@ -109,7 +109,7 @@ export default function ForVideoEditors() {
                   <h3 className="mb-4 text-xl leading-tight font-black tracking-tight uppercase md:text-2xl">
                     {point.title}
                   </h3>
-                  <p className="text-base leading-relaxed font-medium text-[#1a1a1a]">
+                  <p className="text-base leading-relaxed font-medium text-[#272357]">
                     {point.description}
                   </p>
                 </div>
@@ -120,12 +120,12 @@ export default function ForVideoEditors() {
       </section>
 
       {/* How It Works for Editors */}
-      <section className="border-b-2 border-[#1a1a1a] bg-[var(--background)] px-6 py-24 md:py-32">
+      <section className="border-b-2 border-[#272357] bg-[var(--background)] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-4 text-center text-4xl leading-none font-black tracking-tighter uppercase md:text-6xl">
             HOW IT WORKS.
           </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-center text-lg font-medium text-[#888]">
+          <p className="mx-auto mb-16 max-w-2xl text-center text-lg font-medium text-[#6b6b8a]">
             Three steps. No onboarding calls, no training videos, no "schedule a demo" buttons.
           </p>
 
@@ -133,17 +133,17 @@ export default function ForVideoEditors() {
             {steps.map((item) => (
               <div
                 key={item.step}
-                className="flex flex-col border-2 border-[#1a1a1a] bg-[#f0f0e8] shadow-[12px_12px_0px_0px_var(--shadow-color)] transition-all hover:translate-x-2 hover:-translate-y-2 hover:shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+                className="flex flex-col border-2 border-[#272357] bg-[#f5f5f9] shadow-[12px_12px_0px_0px_var(--shadow-color)] transition-all hover:translate-x-2 hover:-translate-y-2 hover:shadow-[4px_4px_0px_0px_var(--shadow-color)]"
               >
-                <div className="flex items-end justify-between border-b-2 border-[#1a1a1a] bg-[#1a1a1a] p-6 text-[#f0f0e8]">
+                <div className="flex items-end justify-between border-b-2 border-[#272357] bg-[#272357] p-6 text-[#f5f5f9]">
                   <span className="text-7xl leading-none font-black">{item.step}</span>
-                  <span className="mb-1 text-xl font-bold tracking-widest text-[#888]">STEP</span>
+                  <span className="mb-1 text-xl font-bold tracking-widest text-[#6b6b8a]">STEP</span>
                 </div>
                 <div className="flex flex-grow flex-col p-8">
-                  <h3 className="mb-4 text-2xl font-black tracking-tighter text-[#2d5a2d] uppercase md:text-3xl">
+                  <h3 className="mb-4 text-2xl font-black tracking-tighter text-[#5252e6] uppercase md:text-3xl">
                     {item.action}
                   </h3>
-                  <p className="text-base leading-relaxed font-medium text-[#1a1a1a]">
+                  <p className="text-base leading-relaxed font-medium text-[#272357]">
                     {item.description}
                   </p>
                 </div>
@@ -154,20 +154,20 @@ export default function ForVideoEditors() {
       </section>
 
       {/* Pricing Callout */}
-      <section className="border-b-2 border-[#1a1a1a] bg-[#2d5a2d] px-6 py-24 text-[#f0f0e8] md:py-32">
+      <section className="border-b-2 border-[#272357] bg-[#5252e6] px-6 py-24 text-[#f5f5f9] md:py-32">
         <div className="mx-auto max-w-5xl text-center">
           <h2 className="mb-8 text-6xl leading-[0.85] font-black tracking-tighter uppercase md:text-8xl lg:text-9xl">
             $5/MONTH.
             <br />
-            <span className="text-[#7cb87c]">NOT PER USER.</span>
+            <span className="text-[#8c8cf0]">NOT PER USER.</span>
             <br />
             TOTAL.
           </h2>
-          <p className="mx-auto mb-4 max-w-2xl text-xl font-medium text-[#f0f0e8]/80 md:text-2xl">
+          <p className="mx-auto mb-4 max-w-2xl text-xl font-medium text-[#f5f5f9]/80 md:text-2xl">
             Unlimited seats. Unlimited projects. Unlimited reviewers. Your entire team, your
             clients, your client's clients — everyone gets access for one flat price.
           </p>
-          <p className="text-lg font-bold text-[#7cb87c]">
+          <p className="text-lg font-bold text-[#8c8cf0]">
             Stop paying per-seat tax on collaboration.
           </p>
         </div>
@@ -179,12 +179,12 @@ export default function ForVideoEditors() {
           <h2 className="mb-6 text-5xl leading-[0.85] font-black tracking-tighter uppercase md:text-7xl lg:text-8xl">
             START EDITING FASTER.
           </h2>
-          <p className="mb-12 max-w-xl text-xl font-medium text-[#888]">
+          <p className="mb-12 max-w-xl text-xl font-medium text-[#6b6b8a]">
             Free trial, no credit card. Set up your first review in under a minute.
           </p>
           <Link
             to="/sign-up"
-            className="border-2 border-[#1a1a1a] bg-[#1a1a1a] px-12 py-6 text-2xl font-black tracking-wider text-[#f0f0e8] uppercase shadow-[12px_12px_0px_0px_var(--shadow-accent)] transition-colors hover:translate-x-[2px] hover:translate-y-[2px] hover:border-[#2d5a2d] hover:bg-[#2d5a2d] hover:shadow-[8px_8px_0px_0px_var(--shadow-accent)]"
+            className="border-2 border-[#272357] bg-[#272357] px-12 py-6 text-2xl font-black tracking-wider text-[#f5f5f9] uppercase shadow-[12px_12px_0px_0px_var(--shadow-accent)] transition-colors hover:translate-x-[2px] hover:translate-y-[2px] hover:border-[#5252e6] hover:bg-[#5252e6] hover:shadow-[8px_8px_0px_0px_var(--shadow-accent)]"
           >
             START FREE TRIAL
           </Link>
