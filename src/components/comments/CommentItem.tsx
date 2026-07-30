@@ -36,6 +36,8 @@ interface CommentItemProps {
   isHighlighted?: boolean;
   isReply?: boolean;
   canResolve?: boolean;
+  /** Hide the timestamp chip — static images have no timeline. */
+  showTimestamp?: boolean;
 }
 
 export function CommentItem({
@@ -44,6 +46,7 @@ export function CommentItem({
   isHighlighted = false,
   isReply = false,
   canResolve = false,
+  showTimestamp = true,
 }: CommentItemProps) {
   const [isReplying, setIsReplying] = useState(false);
   const toggleResolved = useMutation(api.comments.toggleResolved);
@@ -84,12 +87,14 @@ export function CommentItem({
           <div className="flex items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
               <span className="truncate text-sm font-bold text-[#272357]">{comment.userName}</span>
-              <button
-                onClick={() => onTimestampClick(comment.timestampSeconds)}
-                className="shrink-0 font-mono text-xs font-bold text-[#5252e6] hover:text-[#272357]"
-              >
-                {formatTimestamp(comment.timestampSeconds)}
-              </button>
+              {showTimestamp && (
+                <button
+                  onClick={() => onTimestampClick(comment.timestampSeconds)}
+                  className="shrink-0 font-mono text-xs font-bold text-[#5252e6] hover:text-[#272357]"
+                >
+                  {formatTimestamp(comment.timestampSeconds)}
+                </button>
+              )}
               {comment.resolved && (
                 <Badge variant="success" className="shrink-0 text-[10px]">
                   Resolved

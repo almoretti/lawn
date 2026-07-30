@@ -1186,6 +1186,30 @@ export const markAsProcessing = internalMutation({
   },
 });
 
+// Static images skip Mux entirely — ready as soon as the object is uploaded;
+// the dashboard renders the original from the bucket.
+export const markImageAsReady = internalMutation({
+  args: {
+    videoId: v.id("videos"),
+  },
+  handler: async (ctx, args) => {
+    const video = await ctx.db.get(args.videoId);
+    if (!video || video.status !== "processing") {
+      return false;
+    }
+
+    await ctx.db.patch(args.videoId, {
+      uploadError: undefined,
+      status: "ready",
+      s3MultipartUploadId: undefined,
+      s3MultipartPartSizeBytes: undefined,
+      s3MultipartPartCount: undefined,
+      uploadUpdatedAt: Date.now(),
+    });
+    return true;
+  },
+});
+
 export const markAsReady = internalMutation({
   args: {
     videoId: v.id("videos"),

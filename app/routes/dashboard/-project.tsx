@@ -11,6 +11,11 @@ import {
   type RefCallback,
 } from "react";
 import { DropZone } from "@/components/upload/DropZone";
+import {
+  ImageThumbnail,
+  imageKindLabel,
+  isImageContent,
+} from "@/components/videos/ImageThumbnail";
 import { UploadButton } from "@/components/upload/UploadButton";
 import { formatDuration, formatRelativeTime } from "@/lib/utils";
 import { triggerDownload } from "@/lib/download";
@@ -876,9 +881,16 @@ export default function ProjectPage({
                           fetchPriority={index === 0 ? "high" : "auto"}
                           className="h-full w-full object-cover"
                         />
+                      ) : isImageContent(video.contentType) && video.status === "ready" ? (
+                        <ImageThumbnail videoId={video._id} alt={video.title} />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
                           <Play className="h-10 w-10 text-[#6b6b8a]" />
+                        </div>
+                      )}
+                      {video.status === "ready" && isImageContent(video.contentType) && (
+                        <div className="absolute right-2 bottom-2 bg-black/70 px-1.5 py-0.5 font-mono text-[11px] text-white">
+                          {imageKindLabel(video.contentType)}
                         </div>
                       )}
                       {video.status === "ready" && video.duration && (
@@ -1066,6 +1078,8 @@ export default function ProjectPage({
                         fetchPriority={index === 0 ? "high" : "auto"}
                         className="h-full w-full object-cover"
                       />
+                    ) : isImageContent(video.contentType) && video.status === "ready" ? (
+                      <ImageThumbnail videoId={video._id} alt={video.title} />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <Play className="h-6 w-6 text-[#6b6b8a]" />

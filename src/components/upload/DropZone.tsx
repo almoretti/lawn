@@ -31,8 +31,8 @@ export function DropZone({ onFilesSelected, disabled, className }: DropZoneProps
 
       if (disabled) return;
 
-      const files = Array.from(e.dataTransfer.files).filter((file) =>
-        file.type.startsWith("video/"),
+      const files = Array.from(e.dataTransfer.files).filter(
+        (file) => file.type.startsWith("video/") || file.type.startsWith("image/"),
       );
 
       if (files.length > 0) {
@@ -71,7 +71,7 @@ export function DropZone({ onFilesSelected, disabled, className }: DropZoneProps
     >
       <input
         type="file"
-        accept="video/*"
+        accept="video/*,image/png,image/jpeg,image/webp,image/gif"
         multiple
         onChange={handleChange}
         disabled={disabled}
@@ -88,7 +88,7 @@ export function DropZone({ onFilesSelected, disabled, className }: DropZoneProps
         </div>
         <div>
           <p className="font-bold text-[#272357]">
-            {isDragActive ? "Drop to upload" : "Drop videos or click to upload"}
+            {isDragActive ? "Drop to upload" : "Drop videos or images, or click to upload"}
           </p>
           <p className="mt-1 text-sm text-[#6b6b8a]">MP4, MOV, WebM supported</p>
         </div>

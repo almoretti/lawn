@@ -373,6 +373,7 @@ export default function VideoPage() {
   const deletePendingRef = useRef(false);
   const muxRecoveryVideoIdRef = useRef<Id<"videos"> | null>(null);
   const playbackRetryTimeoutRef = useRef<number | null>(null);
+  const isImage = Boolean(video?.contentType?.startsWith("image/"));
   const isPlayable = video?.status === "ready" && Boolean(video?.muxPlaybackId);
   const muxPlaybackId = isPlayable ? (video?.muxPlaybackId ?? null) : null;
   const muxPlaybackSource = selectMuxPlaybackSource({
@@ -395,8 +396,12 @@ export default function VideoPage() {
       ? playbackLoadError.attempt
       : 0;
   const processingFailed = video?.status === "failed";
-  const preferredSource =
-    sourcePreference?.videoId === resolvedVideoId ? sourcePreference.source : "mux720";
+  // Images always render the bucket original — there is no Mux stream.
+  const preferredSource = isImage
+    ? "original"
+    : sourcePreference?.videoId === resolvedVideoId
+      ? sourcePreference.source
+      : "mux720";
   const originalPlaybackFailed = !processingFailed && failedOriginalVideoId === resolvedVideoId;
   const originalPlaybackRequestAttempt =
     originalPlaybackRequest?.videoId === resolvedVideoId ? originalPlaybackRequest.attempt : 0;
@@ -1364,7 +1369,24 @@ export default function VideoPage() {
             </div>
           ) : null}
 
-          {activePlaybackUrl ? (
+          {activePlaybackUrl && isImage ? (
+            <div
+              className="flex min-h-0 flex-1 items-center justify-center overflow-hidden p-6"
+              style={{
+                // subtle checkerboard so transparent PNGs read correctly
+                backgroundImage:
+                  "linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.04) 75%), linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.04) 75%)",
+                backgroundSize: "24px 24px",
+                backgroundPosition: "0 0, 12px 12px",
+              }}
+            >
+              <img
+                src={activePlaybackUrl}
+                alt={video.title}
+                className="max-h-full max-w-full border-2 border-white/10 object-contain shadow-[8px_8px_0px_0px_rgba(0,0,0,0.35)]"
+              />
+            </div>
+          ) : activePlaybackUrl ? (
             <VideoPlayer
               key={resolvedVideoId}
               ref={playerRef}
@@ -1409,7 +1431,10 @@ export default function VideoPage() {
             />
           ) : (
             <div className="flex flex-1 items-center justify-center">
-              {isWaitingForMuxAfterOriginalFailure || (video.status === "ready" && !playbackUrl) ? (
+              {isImage ? (
+                <p className="text-white/60">Loading image...</p>
+              ) : isWaitingForMuxAfterOriginalFailure ||
+                (video.status === "ready" && !playbackUrl) ? (
                 <div className="flex flex-col items-center gap-3 text-white">
                   {activePlaybackLoadError &&
                   !isLoadingPlayback &&
@@ -1514,14 +1539,15 @@ export default function VideoPage() {
               onTimestampClick={handleTimestampClick}
               highlightedCommentId={highlightedCommentId}
               canResolve={canEdit}
+              showTimestamps={!isImage}
             />
           </div>
           {canComment && (
             <div className="flex-shrink-0 border-t-2 border-[#272357] bg-[#f5f5f9]">
               <CommentInput
                 videoId={resolvedVideoId}
-                timestampSeconds={currentTime}
-                showTimestamp
+                timestampSeconds={isImage ? 0 : currentTime}
+                showTimestamp={!isImage}
                 variant="seamless"
               />
             </div>
@@ -1572,14 +1598,15 @@ export default function VideoPage() {
               }}
               highlightedCommentId={highlightedCommentId}
               canResolve={canEdit}
+              showTimestamps={!isImage}
             />
           </div>
           {canComment && (
             <div className="flex-shrink-0 border-t-2 border-[#272357] bg-[#f5f5f9]">
               <CommentInput
                 videoId={resolvedVideoId}
-                timestampSeconds={currentTime}
-                showTimestamp
+                timestampSeconds={isImage ? 0 : currentTime}
+                showTimestamp={!isImage}
                 variant="seamless"
               />
             </div>

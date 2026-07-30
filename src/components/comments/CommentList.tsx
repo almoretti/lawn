@@ -15,6 +15,8 @@ interface CommentListProps {
   onTimestampClick: (seconds: number) => void;
   highlightedCommentId?: Id<"comments">;
   canResolve?: boolean;
+  /** Hide timestamp chips — e.g. static images, where time is meaningless. */
+  showTimestamps?: boolean;
 }
 
 export function CommentList(props: CommentListProps) {
@@ -24,6 +26,7 @@ export function CommentList(props: CommentListProps) {
     onTimestampClick,
     highlightedCommentId,
     canResolve = false,
+    showTimestamps = true,
   } = props;
   const hasProvidedComments = "comments" in props;
   const queriedComments = useQuery(
@@ -42,7 +45,7 @@ export function CommentList(props: CommentListProps) {
         <p className="text-center text-sm text-[#6b6b8a]">
           No comments yet.
           <br />
-          Click on the timeline to add one.
+          Be the first to add one.
         </p>
       </div>
     );
@@ -58,6 +61,7 @@ export function CommentList(props: CommentListProps) {
               onTimestampClick={onTimestampClick}
               isHighlighted={highlightedCommentId === comment._id}
               canResolve={canResolve}
+              showTimestamp={showTimestamps}
             />
             {comment.replies.length > 0 && (
               <div className="relative space-y-4 pr-4 pb-4 pl-14">
@@ -70,6 +74,7 @@ export function CommentList(props: CommentListProps) {
                     isHighlighted={highlightedCommentId === reply._id}
                     isReply
                     canResolve={canResolve}
+                    showTimestamp={showTimestamps}
                   />
                 ))}
               </div>

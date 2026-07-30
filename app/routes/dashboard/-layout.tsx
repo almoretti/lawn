@@ -21,9 +21,15 @@ import { prewarmVideo } from "./-video.data";
 import { resolveDashboardAccess } from "@/lib/dashboardAccess";
 
 const VIDEO_FILE_EXTENSIONS = /\.(mp4|mov|m4v|webm|avi|mkv)$/i;
+const IMAGE_FILE_EXTENSIONS = /\.(png|jpe?g|webp|gif)$/i;
 
 function isVideoFile(file: File) {
-  return file.type.startsWith("video/") || VIDEO_FILE_EXTENSIONS.test(file.name);
+  return (
+    file.type.startsWith("video/") ||
+    file.type.startsWith("image/") ||
+    VIDEO_FILE_EXTENSIONS.test(file.name) ||
+    IMAGE_FILE_EXTENSIONS.test(file.name)
+  );
 }
 
 function dragEventHasFiles(event: DragEvent) {

@@ -42,7 +42,7 @@ export function UploadButton({
       <input
         ref={inputRef}
         type="file"
-        accept="video/*"
+        accept="video/*,image/png,image/jpeg,image/webp,image/gif"
         multiple={multiple}
         onChange={handleChange}
         className="hidden"

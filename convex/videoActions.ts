@@ -48,7 +48,17 @@ const ALLOWED_UPLOAD_CONTENT_TYPES = new Set([
   "video/quicktime",
   "video/webm",
   "video/x-matroska",
+  // Static images for creative review — no Mux, marked ready straight after
+  // upload and displayed from the bucket original.
+  "image/png",
+  "image/jpeg",
+  "image/webp",
+  "image/gif",
 ]);
+
+function isImageContentType(contentType: string): boolean {
+  return contentType.startsWith("image/");
+}
 const MUX_STATUS_SWEEP_BATCH_SIZE = 10;
 const MUX_STATUS_SWEEP_LOCK = "mux-status-sweep";
 const MUX_STATUS_SWEEP_LOCK_TTL_MS = 5 * 60 * 1000;
@@ -812,6 +822,15 @@ export const markUploadComplete = action({
       await ctx.runMutation(internal.videos.markAsProcessing, {
         videoId: args.videoId,
       });
+
+      // Images need no encoding: mark ready immediately and serve the
+      // original from the bucket.
+      if (isImageContentType(normalizedContentType)) {
+        await ctx.runMutation(internal.videos.markImageAsReady, {
+          videoId: args.videoId,
+        });
+        return { success: true };
+      }
 
       // Without Mux the video stays "processing" and the dashboard player
       // streams the original file straight from the bucket.
