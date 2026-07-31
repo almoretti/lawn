@@ -684,7 +684,7 @@ export default function ProjectPage({
       <DashboardHeader
         paths={[
           {
-            label: resolvedTeamSlug,
+            label: context?.team?.name ?? resolvedTeamSlug,
             href: teamHomePath(resolvedTeamSlug),
             prewarmIntentHandlers: prewarmTeamIntentHandlers,
             // Drop a folder here to move it to the top level (videos can't go

@@ -110,7 +110,7 @@ export default function TeamSettingsPage() {
       <DashboardHeader
         paths={[
           {
-            label: team.slug,
+            label: team.name,
             href: teamHomePath(team.slug),
             prewarmIntentHandlers: prewarmTeamIntentHandlers,
           },

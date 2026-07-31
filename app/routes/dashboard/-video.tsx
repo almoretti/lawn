@@ -1051,7 +1051,7 @@ export default function VideoPage() {
       <DashboardHeader
         paths={[
           {
-            label: resolvedTeamSlug,
+            label: context?.team?.name ?? resolvedTeamSlug,
             href: teamHomePath(resolvedTeamSlug),
             prewarmIntentHandlers: prewarmTeamIntentHandlers,
           },

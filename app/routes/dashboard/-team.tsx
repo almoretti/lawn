@@ -140,7 +140,7 @@ export default function TeamPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <DashboardHeader paths={[{ label: team?.slug ?? "team" }]}>
+      <DashboardHeader paths={[{ label: team?.name ?? team?.slug ?? "team" }]}>
         <DashboardSortControl value={sort} onChange={setSort} />
         {canManageTeam && team && (
           <Button
