@@ -2,7 +2,6 @@ import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-r
 import type { ReactNode } from "react";
 
 import { NotFound } from "@/components/ui/NotFound";
-import { PrototypeStyleSwitcher } from "@/components/PrototypeStyleSwitcher";
 import appCss from "../app.css?url";
 import dmMonoLatin from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
 
@@ -11,14 +10,13 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "lawn — video review for creative teams" },
+      { title: "Nu-Create — creative review for Numan" },
       {
         name: "description",
         content:
-          "Video review and collaboration for creative teams. Frame-accurate comments, unlimited seats, $5/month flat. The open source Frame.io alternative.",
+          "Numan's internal creative review tool. Frame-accurate comments on videos, images and GIFs.",
       },
-      { property: "og:site_name", content: "lawn" },
-      { name: "twitter:site", content: "@theo" },
+      { property: "og:site_name", content: "Nu-Create" },
     ],
     links: [
       {
@@ -55,7 +53,6 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
-      <PrototypeStyleSwitcher />
     </RootDocument>
   );
 }

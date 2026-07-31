@@ -158,13 +158,13 @@ export default function DashboardPage() {
                       to={teamSettingsPath(team.slug)}
                       className="text-sm font-bold text-[#6b6b8a] transition-colors hover:text-[#272357]"
                     >
-                      Billing
+                      Team management
                     </Link>
                     <Link
                       to={teamHomePath(team.slug)}
                       className="flex items-center gap-1 text-sm font-bold text-[#6b6b8a] transition-colors hover:text-[#272357]"
                     >
-                      Manage team <ArrowRight className="h-3.5 w-3.5" />
+                      Open team <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
                 </div>

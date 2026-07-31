@@ -113,7 +113,7 @@ export default function HomepageMono() {
                   <div className="mt-2 text-sm text-[#6b6b8a]">Team of 5 = $1,140/year</div>
                 </div>
                 <div>
-                  <div className="mb-1 text-sm text-[#8c8cf0]">lawn</div>
+                  <div className="mb-1 text-sm text-[#8c8cf0]">Nu-Create</div>
                   <div className="text-2xl font-black text-[#8c8cf0]">$5/mo total</div>
                   <div className="mt-2 text-sm text-[#6b6b8a]">Team of 5 = $60/year</div>
                 </div>
@@ -135,7 +135,7 @@ export default function HomepageMono() {
                 </ul>
               </div>
               <div className="border-2 border-[#5252e6] p-6">
-                <div className="mb-2 font-black text-[#5252e6]">lawn</div>
+                <div className="mb-2 font-black text-[#5252e6]">Nu-Create</div>
                 <ul className="space-y-1 text-sm">
                   <li>• Works with any software</li>
                   <li>• Simpler, faster interface</li>
@@ -211,7 +211,7 @@ export default function HomepageMono() {
       {/* Footer */}
       <footer className="border-t-2 border-[#272357] px-6 py-8">
         <div className="mx-auto flex max-w-5xl items-center justify-between text-sm">
-          <span className="text-xl font-black">lawn</span>
+          <span className="text-xl font-black">Nu-Create</span>
           <div className="flex gap-6 text-[#6b6b8a]">
             <a href="/github" className="hover:text-[#272357]">
               GitHub

@@ -445,7 +445,7 @@ export default function Homepage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "lawn",
+            name: "Nu-Create",
             description:
               "Video review and collaboration for creative teams. Frame-accurate comments, unlimited seats, flat pricing.",
             url: "https://lawn.video",

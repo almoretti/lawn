@@ -8,7 +8,7 @@ export const Route = createFileRoute("/sign-up")({
     seoHead({
       title: "Start your free trial",
       description:
-        "Sign up for lawn — video review for creative teams. $5/month flat, unlimited seats.",
+        "Sign in to Nu-Create — Numan's internal creative review tool.",
       path: "/sign-up",
     }),
   validateSearch: (search: Record<string, unknown>) => ({

@@ -1,31 +1,29 @@
 @import "@fontsource-variable/dm-sans";
 @import "@fontsource/dm-mono";
 @import "tailwindcss";
-/* PROTOTYPE — style-direction explorer, delete with the switcher */
-@import "./prototype-styles.css";
 
 :root {
-  /* Core palette - warm cream and dark */
-  --background: #f5f5f9;
+  /* Clean SaaS palette — white surfaces, quiet lilac canvas */
+  --background: #fafafc;
   --background-alt: #272357;
   --surface: #ffffff;
-  --surface-alt: #e9e9f2;
+  --surface-alt: #f4f4f8;
   --surface-strong: #272357;
-  --surface-muted: #dadae8;
+  --surface-muted: #e9e9f0;
 
   /* Text */
-  --foreground: #272357;
-  --foreground-muted: #6b6b8a;
-  --foreground-subtle: #9a9ab5;
-  --foreground-inverse: #f5f5f9;
+  --foreground: #2b2a45;
+  --foreground-muted: #73738c;
+  --foreground-subtle: #a0a0b8;
+  --foreground-inverse: #ffffff;
 
   /* Borders */
-  --border: #272357;
-  --border-subtle: #dadae8;
-  --shadow-color: #272357;
-  --shadow-accent: rgba(82, 82, 230, 1);
+  --border: #e4e4ec;
+  --border-subtle: #ececf2;
+  --shadow-color: transparent;
+  --shadow-accent: transparent;
 
-  /* Accent - forest green */
+  /* Accent - Numan indigo */
   --accent: #5252e6;
   --accent-hover: #4343cf;
   --accent-light: #8c8cf0;
@@ -138,7 +136,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "DM Mono", ui-monospace, monospace;
+  font-family: "DM Sans Variable", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -307,7 +305,7 @@ body {
 
 /* Map legacy hardcoded utility tokens to theme vars so dark mode works app-wide */
 [class~="bg-[#f5f5f9]"] {
-  background-color: var(--background) !important;
+  background-color: var(--surface) !important;
 }
 [class~="text-[#f5f5f9]"] {
   color: var(--foreground-inverse) !important;
@@ -449,3 +447,36 @@ body {
 .group:hover [class~="group-hover:text-[#272357]"] {
   color: var(--foreground) !important;
 }
+
+/* ============================================================
+   Clean SaaS design language (winner of the style prototype,
+   2026-07-31): soft radii, hairline borders, soft elevation,
+   sentence case, DM Sans for labels. Applied via overrides on
+   the legacy brutalist utility signatures, consistent with the
+   hex→var remap block above.
+   ============================================================ */
+:is(button, input, textarea, select, img, video) {
+  border-radius: 10px;
+}
+:is([class*="border-2"], [class*="shadow-["], [class*="aspect-video"]) {
+  border-radius: 10px;
+}
+[class*="border-2"] { border-width: 1px !important; }
+[class*="border-t-2"] { border-top-width: 1px !important; }
+[class*="border-b-2"] { border-bottom-width: 1px !important; }
+[class*="border-l-2"] { border-left-width: 1px !important; }
+[class*="border-r-2"] { border-right-width: 1px !important; }
+
+[class*="shadow-["] {
+  box-shadow: 0 1px 2px rgba(39, 35, 87, 0.06), 0 4px 12px rgba(39, 35, 87, 0.05) !important;
+}
+
+/* sentence case + sans labels; brutalist press-effect removed */
+.uppercase { text-transform: none !important; letter-spacing: 0 !important; }
+.font-mono {
+  font-family: "DM Sans Variable", system-ui, sans-serif !important;
+  letter-spacing: 0;
+}
+.font-black { font-weight: 600 !important; letter-spacing: -0.015em; }
+[class*="hover:translate"]:hover { transform: none !important; }
+.group:hover [class*="group-hover:translate"] { transform: none !important; }

@@ -120,7 +120,7 @@ export function DashboardHeader({
           className="mr-2 flex-shrink-0 transition-colors hover:text-[#5252e6]"
           {...prewarmHomeIntentHandlers}
         >
-          lawn.
+          Nu-Create
         </Link>
         {paths.map((path, index) => {
           const isIntermediate = paths.length >= 2 && index < paths.length - 1;

@@ -5,7 +5,7 @@ import Homepage from "./-home";
 export const Route = createFileRoute("/")({
   head: () => {
     const head = seoHead({
-      title: "lawn — video review for creative teams",
+      title: "Nu-Create — creative review for Numan",
       description:
         "Video review and collaboration for creative teams. Frame-accurate comments, unlimited seats, $5/month flat. The open source Frame.io alternative.",
       path: "/",

@@ -19,9 +19,9 @@ export function AuthShell({ children }: { children: ReactNode }) {
       <div className="relative z-10 w-full max-w-md px-4">
         <div className="mb-8 text-center">
           <Link to="/" className="inline-block">
-            <span className="text-4xl font-black text-[#272357]">lawn</span>
+            <span className="text-4xl font-black text-[#272357]">Nu-Create</span>
           </Link>
-          <p className="mt-3 text-sm text-[#6b6b8a]">Video collaboration, simplified</p>
+          <p className="mt-3 text-sm text-[#6b6b8a]">Creative review for Numan</p>
         </div>
         {children}
       </div>

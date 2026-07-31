@@ -29,12 +29,12 @@ export function MarketingFooter() {
             <ul className="space-y-3 text-sm font-bold">
               <li>
                 <Link to="/compare/frameio" className="transition-colors hover:text-[#8c8cf0]">
-                  lawn vs Frame.io
+                  Nu-Create vs Frame.io
                 </Link>
               </li>
               <li>
                 <Link to="/compare/wipster" className="transition-colors hover:text-[#8c8cf0]">
-                  lawn vs Wipster
+                  Nu-Create vs Wipster
                 </Link>
               </li>
             </ul>
@@ -75,8 +75,8 @@ export function MarketingFooter() {
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 border-t border-[#38366d] pt-8 md:flex-row">
-          <span className="text-3xl font-black tracking-tighter">lawn.</span>
-          <span className="text-sm text-[#6b6b8a]">Video review for creative teams.</span>
+          <span className="text-3xl font-black tracking-tighter">Nu-Create</span>
+          <span className="text-sm text-[#6b6b8a]">Creative review for Numan marketing.</span>
         </div>
       </div>
     </footer>
