@@ -1,19 +1,15 @@
 /* ============================================================
    PROTOTYPE — style-direction explorer. THROWAWAY.
-   Five visual systems layered over the existing markup via
-   html[data-style=...]. Switch with the floating bar (dev only).
-   Question: which non-brutalist style direction should lawn adopt?
-   [class~="…"] = exact class-token match (avoids hover:* false
-   positives); !important flattens the utility-layer cascade.
-   Once a winner is picked, restyle properly and DELETE this file
-   + PrototypeStyleSwitcher.tsx.
+   Five visual systems via html[data-style=...]. The app already
+   routes every colour through theme vars (see the utility remap
+   block in app.css), so each variant REDEFINES THE VARIABLES —
+   guaranteed-legible — plus structural de-brutalising (radius,
+   hairlines, soft shadows, type). The switcher also forces
+   data-theme per variant so the app's own dark mode can't fight.
+   Delete this + PrototypeStyleSwitcher.tsx once a winner is picked.
    ============================================================ */
 
-/* ---------- shared de-brutalising resets ---------- */
-html[data-style]:not([data-style="current"]) {
-  --shadow-color: transparent;
-  --shadow-accent: transparent;
-}
+/* ---------- shared structural resets (any variant) ---------- */
 html[data-style]:not([data-style="current"]) .font-black {
   font-weight: 650 !important;
   letter-spacing: -0.015em;
@@ -32,15 +28,30 @@ html[data-style]:not([data-style="current"]) [class*="border-l-2"] { border-left
 html[data-style]:not([data-style="current"]) [class*="border-r-2"] { border-right-width: 1px !important; }
 
 /* ============================================================
-   1. CLEAN SAAS
+   1. CLEAN SAAS — white cards, hairlines, quiet. Linear/Notion.
    ============================================================ */
-html[data-style="clean"] { --proto-radius: 10px; }
-html[data-style="clean"] body { background: #fafafc !important; }
+html[data-style="clean"][data-style] {
+  --proto-radius: 10px;
+  --background: #fafafc;
+  --background-alt: #272357;
+  --surface: #ffffff;
+  --surface-alt: #f4f4f8;
+  --surface-strong: #272357;
+  --surface-muted: #e9e9f0;
+  --foreground: #2b2a45;
+  --foreground-muted: #73738c;
+  --foreground-subtle: #a0a0b8;
+  --foreground-inverse: #ffffff;
+  --border: #e4e4ec;
+  --border-subtle: #ececf2;
+  --shadow-color: transparent;
+  --shadow-accent: transparent;
+  --accent: #5252e6;
+  --accent-hover: #4343cf;
+  --accent-light: #8c8cf0;
+}
 html[data-style="clean"] [class~="bg-[#f5f5f9]"] { background-color: #ffffff !important; }
-html[data-style="clean"] [class~="bg-[#e9e9f2]"] { background-color: #f4f4f8 !important; }
-html[data-style="clean"] [class~="hover:bg-[#e9e9f2]"]:hover { background-color: #f4f4f8 !important; }
-html[data-style="clean"] [class*="border-[#272357]"] { border-color: #e4e4ec !important; }
-html[data-style="clean"] [class*="border-[#dadae8]"] { border-color: #ececf2 !important; }
+html[data-style="clean"] body { background: #fafafc !important; }
 html[data-style="clean"] [class*="shadow-["] {
   box-shadow: 0 1px 2px rgba(39, 35, 87, 0.06), 0 4px 12px rgba(39, 35, 87, 0.05) !important;
 }
@@ -52,14 +63,28 @@ html[data-style="clean"] .font-mono {
 html[data-style="clean"] .font-black { font-weight: 600 !important; }
 
 /* ============================================================
-   2. NUMAN CLINICAL
+   2. NUMAN CLINICAL — white panels on lilac, pills, 550 headings.
    ============================================================ */
-html[data-style="clinical"] { --proto-radius: 12px; }
-html[data-style="clinical"] body { background: #f5f5f9 !important; }
+html[data-style="clinical"][data-style] {
+  --proto-radius: 12px;
+  --background: #f5f5f9;
+  --surface: #ffffff;
+  --surface-alt: #f5f5f9;
+  --surface-strong: #272357;
+  --surface-muted: #e9e9f2;
+  --foreground: #272357;
+  --foreground-muted: #6b6b8a;
+  --foreground-subtle: #9a9ab5;
+  --foreground-inverse: #ffffff;
+  --border: #dadae8;
+  --border-subtle: #e9e9f2;
+  --shadow-color: transparent;
+  --shadow-accent: transparent;
+  --accent: #5252e6;
+  --accent-hover: #4343cf;
+  --accent-light: #8c8cf0;
+}
 html[data-style="clinical"] [class~="bg-[#f5f5f9]"] { background-color: #ffffff !important; }
-html[data-style="clinical"] [class~="bg-[#e9e9f2]"] { background-color: #f5f5f9 !important; }
-html[data-style="clinical"] [class~="hover:bg-[#e9e9f2]"]:hover { background-color: #eeeef5 !important; }
-html[data-style="clinical"] [class*="border-[#272357]"] { border-color: #dadae8 !important; }
 html[data-style="clinical"] [class*="shadow-["] {
   box-shadow: 0 1px 3px rgba(39, 35, 87, 0.08) !important;
 }
@@ -68,38 +93,61 @@ html[data-style="clinical"] button { border-radius: 999px !important; }
 html[data-style="clinical"] textarea, html[data-style="clinical"] input { border-radius: 12px !important; }
 
 /* ============================================================
-   3. DARK STUDIO
+   3. DARK STUDIO — charcoal-indigo creative tool. Frame.io.
    ============================================================ */
-html[data-style="dark"] { --proto-radius: 8px; color-scheme: dark; }
+html[data-style="dark"][data-style] {
+  --proto-radius: 8px;
+  color-scheme: dark;
+  --background: #131126;
+  --background-alt: #ecebfa;
+  --surface: #1b1936;
+  --surface-alt: #26234a;
+  --surface-strong: #5252e6;
+  --surface-muted: #2c2954;
+  --foreground: #ecebfa;
+  --foreground-muted: #9c9ac2;
+  --foreground-subtle: #6f6d99;
+  --foreground-inverse: #131126;
+  --border: #34305e;
+  --border-subtle: #2c2954;
+  --shadow-color: transparent;
+  --shadow-accent: transparent;
+  --accent: #8f8ff2;
+  --accent-hover: #a9a9f6;
+  --accent-light: #c9c9f8;
+  --destructive: #ff7a7a;
+  --success: #3ddb9e;
+  --warning: #ffb45c;
+}
 html[data-style="dark"] body { background: #131126 !important; }
-html[data-style="dark"] [class~="bg-[#f5f5f9]"] { background-color: #1b1936 !important; }
-html[data-style="dark"] [class~="bg-[#e9e9f2]"] { background-color: #26234a !important; }
-html[data-style="dark"] [class~="bg-[#272357]"] { background-color: #5252e6 !important; }
-html[data-style="dark"] [class~="bg-[#dadae8]"] { background-color: #2c2954 !important; }
-html[data-style="dark"] [class~="hover:bg-[#e9e9f2]"]:hover { background-color: #26234a !important; }
-html[data-style="dark"] [class~="hover:bg-[#272357]"]:hover { background-color: #4343cf !important; }
-html[data-style="dark"] [class~="text-[#272357]"] { color: #ecebfa !important; }
-html[data-style="dark"] [class~="text-[#6b6b8a]"] { color: #9c9ac2 !important; }
-html[data-style="dark"] [class~="text-[#5252e6]"] { color: #8f8ff2 !important; }
-html[data-style="dark"] [class~="hover:text-[#272357]"]:hover { color: #ffffff !important; }
-html[data-style="dark"] [class~="hover:text-[#5252e6]"]:hover { color: #a9a9f6 !important; }
-html[data-style="dark"] [class*="border-[#272357]"] { border-color: #34305e !important; }
-html[data-style="dark"] [class*="border-[#dadae8]"] { border-color: #2c2954 !important; }
 html[data-style="dark"] [class*="shadow-["] {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
 }
 html[data-style="dark"] .uppercase { letter-spacing: 0.14em; }
 
 /* ============================================================
-   4. AIRY EDITORIAL
+   4. AIRY EDITORIAL — borderless, elevation, whitespace.
    ============================================================ */
-html[data-style="airy"] { --proto-radius: 16px; }
-html[data-style="airy"] body { background: #f7f7fa !important; }
+html[data-style="airy"][data-style] {
+  --proto-radius: 16px;
+  --background: #f7f7fa;
+  --surface: #ffffff;
+  --surface-alt: #f2f2f7;
+  --surface-strong: #272357;
+  --surface-muted: #ececf2;
+  --foreground: #33325a;
+  --foreground-muted: #82829c;
+  --foreground-subtle: #b0b0c4;
+  --foreground-inverse: #ffffff;
+  --border: transparent;
+  --border-subtle: #f0f0f5;
+  --shadow-color: transparent;
+  --shadow-accent: transparent;
+  --accent: #5252e6;
+  --accent-hover: #4343cf;
+  --accent-light: #8c8cf0;
+}
 html[data-style="airy"] [class~="bg-[#f5f5f9]"] { background-color: #ffffff !important; }
-html[data-style="airy"] [class~="bg-[#e9e9f2]"] { background-color: #f2f2f7 !important; }
-html[data-style="airy"] [class~="hover:bg-[#e9e9f2]"]:hover { background-color: #f2f2f7 !important; }
-html[data-style="airy"] [class*="border-[#272357]"] { border-color: transparent !important; }
-html[data-style="airy"] [class*="border-[#dadae8]"] { border-color: #f0f0f5 !important; }
 html[data-style="airy"] [class*="shadow-["] {
   box-shadow: 0 2px 6px rgba(39, 35, 87, 0.05), 0 12px 32px rgba(39, 35, 87, 0.07) !important;
 }
@@ -112,14 +160,29 @@ html[data-style="airy"] .font-mono {
 html[data-style="airy"] header { border-bottom: 1px solid #ececf2 !important; }
 
 /* ============================================================
-   5. COMPACT PRO
+   5. COMPACT PRO — dense, small radii. Jira/Asana workhorse.
    ============================================================ */
-html[data-style="compact"] { --proto-radius: 6px; }
-html[data-style="compact"] body { background: #f1f1f5 !important; font-size: 15px; }
+html[data-style="compact"][data-style] {
+  --proto-radius: 6px;
+  --background: #f1f1f5;
+  --surface: #ffffff;
+  --surface-alt: #eaeaf1;
+  --surface-strong: #272357;
+  --surface-muted: #e0e0ea;
+  --foreground: #272357;
+  --foreground-muted: #63637e;
+  --foreground-subtle: #9494ad;
+  --foreground-inverse: #ffffff;
+  --border: #d5d5e2;
+  --border-subtle: #e4e4ed;
+  --shadow-color: transparent;
+  --shadow-accent: transparent;
+  --accent: #4747d6;
+  --accent-hover: #3a3ac2;
+  --accent-light: #8c8cf0;
+}
 html[data-style="compact"] [class~="bg-[#f5f5f9]"] { background-color: #ffffff !important; }
-html[data-style="compact"] [class~="bg-[#e9e9f2]"] { background-color: #eaeaf1 !important; }
-html[data-style="compact"] [class~="hover:bg-[#e9e9f2]"]:hover { background-color: #e4e4ed !important; }
-html[data-style="compact"] [class*="border-[#272357]"] { border-color: #d5d5e2 !important; }
+html[data-style="compact"] body { font-size: 15px; }
 html[data-style="compact"] [class*="shadow-["] {
   box-shadow: 0 1px 2px rgba(39, 35, 87, 0.08) !important;
 }

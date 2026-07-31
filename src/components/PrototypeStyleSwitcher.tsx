@@ -34,8 +34,24 @@ export function PrototypeStyleSwitcher() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.dataset.style = styleKey;
+    const root = document.documentElement;
+    root.dataset.style = styleKey;
     window.localStorage.setItem(STORAGE_KEY, styleKey);
+    // Force a coherent base theme per variant so the app's own dark mode
+    // can't fight the prototype palette; restore the user's theme on
+    // "current".
+    if (styleKey === "current") {
+      const stored = window.localStorage.getItem("lawn-theme");
+      if (stored === "light" || stored === "dark") {
+        root.setAttribute("data-theme", stored);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        root.setAttribute("data-theme", "dark");
+      } else {
+        root.removeAttribute("data-theme");
+      }
+    } else {
+      root.setAttribute("data-theme", styleKey === "dark" ? "dark" : "light");
+    }
   }, [styleKey]);
 
   const cycle = useCallback((direction: 1 | -1) => {
