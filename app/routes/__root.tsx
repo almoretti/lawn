@@ -2,6 +2,7 @@ import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-r
 import type { ReactNode } from "react";
 
 import { NotFound } from "@/components/ui/NotFound";
+import { PrototypeStyleSwitcher } from "@/components/PrototypeStyleSwitcher";
 import appCss from "../app.css?url";
 import dmMonoLatin from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
 
@@ -54,6 +55,7 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
+      <PrototypeStyleSwitcher />
     </RootDocument>
   );
 }

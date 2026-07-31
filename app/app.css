@@ -1,6 +1,8 @@
 @import "@fontsource-variable/dm-sans";
 @import "@fontsource/dm-mono";
 @import "tailwindcss";
+/* PROTOTYPE — style-direction explorer, delete with the switcher */
+@import "./prototype-styles.css";
 
 :root {
   /* Core palette - warm cream and dark */
